@@ -1,0 +1,4 @@
+package lk.ijse.carepoint.dto;
+
+public class serviceAppointDto {
+}
