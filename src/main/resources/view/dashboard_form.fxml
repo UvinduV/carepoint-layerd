@@ -1,11 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carepoint.controller.dashboardFormController">
+<AnchorPane fx:id="rootNode" prefHeight="712.0" prefWidth="1375.0" style="-fx-background-color: #CAD3C8;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carepoint.controller.dashboardFormController">
    <children>
-      <Label layoutX="186.0" layoutY="116.0" prefHeight="38.0" prefWidth="233.0" text="Dashboard form" />
+      <AnchorPane layoutX="32.0" layoutY="80.0" prefHeight="615.0" prefWidth="77.0" style="-fx-background-color: #000000; -fx-background-radius: 60;">
+         <children>
+            <JFXButton fx:id="btnHome" layoutX="12.0" layoutY="45.0" onAction="#btnHomeOnAction" prefHeight="49.0" prefWidth="57.0" style="-fx-background-color: #636e72; -fx-background-radius: 60;" text=".">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Pictures/carwash%20image/icon/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnShedule" layoutX="12.0" layoutY="124.0" onAction="#btnSheduleOnAction" prefHeight="49.0" prefWidth="49.0" style="-fx-background-color: #636e72; -fx-background-radius: 60;" text=".">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Pictures/carwash%20image/icon/shedule.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnAppoint" layoutX="12.0" layoutY="199.0" onAction="#btnAppointOnAction" prefHeight="49.0" prefWidth="49.0" style="-fx-background-color: #636e72; -fx-background-radius: 60;" text=".">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Pictures/carwash%20image/icon/appointment.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnRecods" layoutX="12.0" layoutY="283.0" onAction="#btnRecodsOnAction" prefHeight="49.0" prefWidth="49.0" style="-fx-background-color: #636e72; -fx-background-radius: 60;" text=".">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Pictures/carwash%20image/icon/recods.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnItems" layoutX="12.0" layoutY="367.0" onAction="#btnItemsOnAction" prefHeight="49.0" prefWidth="49.0" style="-fx-background-color: #636e72; -fx-background-radius: 60;" text=".">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Pictures/carwash%20image/icon/items.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnLogout" layoutX="12.0" layoutY="515.0" onAction="#btnLogoutOnAction" prefHeight="49.0" prefWidth="49.0" style="-fx-background-color: #636e72; -fx-background-radius: 60;" text=".">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Pictures/carwash%20image/icon/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="rootHome" layoutX="119.0" layoutY="80.0" prefHeight="615.0" prefWidth="1228.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20;" />
+      <AnchorPane layoutX="124.0" layoutY="32.0" prefHeight="31.0" prefWidth="1221.0" style="-fx-background-color: #ffffff; -fx-background-radius: 40;" />
+      <ImageView fx:id="imHome" fitHeight="49.0" fitWidth="95.0" layoutX="24.0" layoutY="29.0" onMouseClicked="#imHomeOnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Pictures/carwash%20image/logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

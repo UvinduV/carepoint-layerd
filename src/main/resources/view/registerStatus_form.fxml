@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="regStatusPanel" prefHeight="615.0" prefWidth="1228.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carepoint.controller.registerStatus">
+   <children>
+      <AnchorPane fx:id="custPanel" layoutX="14.0" layoutY="73.0" prefHeight="510.0" prefWidth="592.0" style="-fx-background-color: #dfe6e9; -fx-background-radius: 20;">
+         <children>
+            <Label layoutX="225.0" layoutY="40.0" text="Customer">
+               <font>
+                  <Font name="Arial Black" size="27.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtName" layoutX="147.0" layoutY="197.0" onAction="#txtNameOnAction" prefHeight="36.0" prefWidth="308.0" promptText="Name" style="-fx-background-color: #ffffff; -fx-background-radius: 40;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="txtAddress" layoutX="147.0" layoutY="255.0" onAction="#txtAddressOnAction" prefHeight="36.0" prefWidth="308.0" promptText="Address" style="-fx-background-color: #ffffff; -fx-background-radius: 40;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="txtTel" layoutX="147.0" layoutY="316.0" onAction="#txtTelOnAction" prefHeight="36.0" prefWidth="308.0" promptText="07xxxxxxxx" style="-fx-background-color: #ffffff; -fx-background-radius: 40;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <Label fx:id="lblCustId" layoutX="158.0" layoutY="147.0" prefHeight="19.0" prefWidth="82.0" text="ID          :">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="67.0" layoutY="206.0" prefHeight="19.0" prefWidth="82.0" text="Name    :">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="67.0" layoutY="264.0" text="Address:">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="67.0" layoutY="325.0" text="Tel        :">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnCustomerSave" layoutX="295.0" layoutY="402.0" onAction="#btnCustomerSaveOnAction" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #000000; -fx-background-radius: 60;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Label layoutX="63.0" layoutY="147.0" prefHeight="19.0" prefWidth="82.0" text="ID           :">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="vehiclePanel" layoutX="622.0" layoutY="73.0" prefHeight="510.0" prefWidth="592.0" style="-fx-background-color: #dfe6e9; -fx-background-radius: 20;">
+         <children>
+            <Label layoutX="240.0" layoutY="43.0" text="Vehicle">
+               <font>
+                  <Font name="Arial Black" size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="269.0" prefHeight="19.0" prefWidth="94.0" text="Type         :">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="327.0" text="Fuel Type :">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="102.0" layoutY="329.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbFuelType" layoutX="182.0" layoutY="319.0" prefHeight="36.0" prefWidth="308.0" style="-fx-background-color: #ffffff; -fx-background-radius: 60;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+            <ComboBox fx:id="cmbOwnerId" layoutX="182.0" layoutY="203.0" prefHeight="36.0" prefWidth="308.0" style="-fx-background-color: #ffffff; -fx-background-radius: 60;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+            <JFXButton fx:id="btnVehicleSave" layoutX="336.0" layoutY="399.0" onAction="#btnVehicleSaveOnAction" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #000000; -fx-background-radius: 60;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Label layoutX="82.0" layoutY="153.0" prefHeight="19.0" prefWidth="94.0" text="ID             :">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtVehicleId" layoutX="182.0" layoutY="145.0" prefHeight="36.0" prefWidth="308.0" promptText="Eg: CARxxxx" style="-fx-background-color: #ffffff; -fx-background-radius: 40;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <Label layoutX="82.0" layoutY="212.0" prefHeight="19.0" prefWidth="94.0" text="Owner ID :">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbCarType" layoutX="182.0" layoutY="261.0" prefHeight="36.0" prefWidth="308.0" style="-fx-background-color: #ffffff; -fx-background-radius: 60;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+         </children></AnchorPane>
+      <Label layoutX="55.0" layoutY="14.0" prefHeight="36.0" prefWidth="338.0" text="Registration Process" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Arial Bold" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

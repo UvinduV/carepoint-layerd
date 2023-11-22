@@ -1,6 +1,8 @@
 package lk.ijse.carepoint.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,10 +32,10 @@ public class loginFormController {
     private AnchorPane rootNode;
 
     @FXML
-    private TextField txtPassword;
+    private JFXPasswordField txtPassword;
 
     @FXML
-    private TextField txtUsername;
+    private JFXTextField txtUsername;
     private UserModel userModel =new UserModel();
     public void btnSignInOnAction(ActionEvent event) {
         String username = txtUsername.getText();
@@ -63,7 +65,7 @@ public class loginFormController {
     }
 
     private void loadToDashBoard() throws IOException {
-        System.out.println("Successfuly  login to the Login Page");
+        System.out.println("Successfuly  login to the dashboard");
         Parent rootNode = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
         Scene scene = new Scene(rootNode);
         Stage stage = (Stage) this.rootNode.getScene().getWindow();

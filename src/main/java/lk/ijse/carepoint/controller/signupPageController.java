@@ -1,6 +1,8 @@
 package lk.ijse.carepoint.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,22 +32,22 @@ public class signupPageController {
 
 
     @FXML
-    private TextField txtFName;
+    private JFXTextField txtFName;
 
     @FXML
-    private TextField txtLName;
+    private JFXTextField txtLName;
 
     @FXML
-    private TextField txtPassword;
+    private JFXPasswordField txtPassword;
 
     @FXML
-    private TextField txtPosition;
+    private JFXTextField txtPosition;
 
     @FXML
-    private TextField txtRePassword;
+    private JFXPasswordField txtRePassword;
 
     @FXML
-    private TextField txtUsername;
+    private JFXTextField txtUsername;
 
     private UserModel userModel =new UserModel();
     public void btnSignupOnAction(ActionEvent actionEvent) {
