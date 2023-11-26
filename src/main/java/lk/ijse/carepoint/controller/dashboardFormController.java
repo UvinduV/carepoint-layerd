@@ -6,14 +6,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class dashboardFormController {
+    @FXML
+    private Label lblTime;
+    @FXML
+    private Label lblDate;
 
     @FXML
     private ImageView imHome;
@@ -40,6 +46,11 @@ public class dashboardFormController {
 
     @FXML
     private AnchorPane rootNode;
+
+    public void initialize(){
+        lblDate.setText(LocalDate.now().toString());
+        lblTime.setText(java.time.LocalTime.now().toString());
+    }
 
     public void btnHomeOnAction(ActionEvent event) throws IOException {
         rootNode.getChildren().clear();
@@ -81,5 +92,13 @@ public class dashboardFormController {
         stage.setTitle("carepoint");
         stage.setScene(scene);
 
+    }
+    private void setDate() {
+//        LocalDate now = LocalDate.now();
+        lblDate.setText(String.valueOf(LocalDate.now()));
+    }
+    private void setTime() {
+//        LocalTime now = LocalTime.now();
+        lblTime.setText(String.valueOf(LocalDate.now()));
     }
 }

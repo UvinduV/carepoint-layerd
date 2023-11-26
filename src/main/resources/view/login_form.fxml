@@ -18,7 +18,7 @@
          <children>
             <ImageView fitHeight="800.0" fitWidth="1500.0" layoutX="-68.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Pictures/carwash%20image/userLogin.jpg" />
+                  <Image url="@../Images/userLogin.jpg" />
                </image>
             </ImageView>
          </children>
@@ -54,12 +54,12 @@
             <Label layoutX="150.0" layoutY="480.0" text="If you don't have account, " />
             <ImageView fitHeight="16.0" fitWidth="25.0" layoutX="105.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Pictures/carwash%20image/icon/icons8-user-24.png" />
+                  <Image url="@../Icon/icons8-user-24.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="16.0" fitWidth="25.0" layoutX="105.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Pictures/carwash%20image/icon/upassword.png" />
+                  <Image url="@../Icon/upassword.png" />
                </image>
             </ImageView>
             <Button fx:id="btnSignUp" layoutX="324.0" layoutY="476.0" mnemonicParsing="false" onAction="#btnSignUpOnAction" style="-fx-background-color: #ffffff;" text="Sign Up Here" textFill="#0b8af8" underline="true">

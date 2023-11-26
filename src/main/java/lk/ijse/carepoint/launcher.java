@@ -12,6 +12,7 @@ public class launcher extends Application {
     public void start(Stage stage) throws IOException {
        // FXMLLoader fxmlLoader = new FXMLLoader(launcher.class.getResource("/view/signup_page.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(launcher.class.getResource("/view/login_form.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(launcher.class.getResource("/view/serviceAppoint_form.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("carepoint");
         stage.setScene(scene);

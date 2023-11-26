@@ -103,3 +103,4 @@ create table item_detail(
 );
 
 show tables;
+

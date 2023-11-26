@@ -7,10 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class VehicleDto {
-    String vehicle_no;
-    String cust_id;
+public class PackageDto {
+    String id;
     String type;
-    String fuel_type;
-
+    Double amount;
 }

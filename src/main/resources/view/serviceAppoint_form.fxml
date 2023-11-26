@@ -1,14 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.carepoint.controller.serviceAppointFrom"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="AppointPanel" prefHeight="615.0" prefWidth="1228.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carepoint.controller.serviceAppointFrom">
+   <children>
+      <Label layoutX="482.0" layoutY="14.0" text="Create Appointment">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="118.0" layoutY="109.0" text="Appoint Id   :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAppointId" layoutX="252.0" layoutY="100.0" prefHeight="37.0" prefWidth="148.0" textFill="#278d7f">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="790.0" layoutY="99.0" text="Appointment date:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="112.0" layoutY="168.0" text="Customer Id:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cmbCustomerId" layoutX="237.0" layoutY="151.0" onAction="#cmbCustomerOnAction" prefHeight="33.0" prefWidth="203.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXComboBox>
+      <Label layoutX="532.0" layoutY="168.0" text="Customer Name:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCustomerName" layoutX="695.0" layoutY="167.0" textFill="#278d7f">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="440.0" layoutY="240.0" text="Package Code:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cmbPackageCode" layoutX="441.0" layoutY="264.0" onAction="#cmbPackageOnAction" prefHeight="33.0" prefWidth="183.0" />
+      <Label layoutX="689.0" layoutY="244.0" text="Type:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDescription" layoutX="694.0" layoutY="279.0" textFill="#278d7f">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="852.0" layoutY="243.0" text="Price:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUnitPrice" layoutX="863.0" layoutY="279.0" textFill="#278d7f">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblOrderCart" layoutX="112.0" layoutY="339.0" prefHeight="200.0" prefWidth="740.0">
+         <columns>
+            <TableColumn fx:id="colIVehicleNo" prefWidth="117.0" text="Vehicle No" />
+            <TableColumn fx:id="colPackageId" prefWidth="134.0" text="Package ID" />
+            <TableColumn fx:id="colType" prefWidth="121.0" text="Type" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="132.0" text="Price" />
+            <TableColumn fx:id="colTotal" prefWidth="127.0" text="Total" />
+            <TableColumn fx:id="colAction" prefWidth="115.0" text="Action" />
+         </columns>
+      </TableView>
+      <JFXButton fx:id="btnAddToCart" buttonType="RAISED" layoutX="1038.0" layoutY="247.0" onAction="#btnAddToCartOnAction" prefHeight="33.0" prefWidth="120.0" style="-fx-background-color: #3498db; -fx-background-radius: 40;" text="Add to cart" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../thogakade-mvc-clone/src/main/resources/icon/cart.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="882.0" layoutY="466.0" onAction="#btnPlaceOrderOnAction" prefHeight="34.0" prefWidth="276.0" style="-fx-background-color: #34495e; -fx-background-radius: 40;" text="Create Appointment" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="1092.0" layoutY="553.0" onAction="#btnBackOnAction" prefHeight="33.0" prefWidth="66.0" style="-fx-background-color: #000000;" text="Back" textFill="#fffafa">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label fx:id="lblNetTotal" layoutX="971.0" layoutY="413.0" textFill="#b51313">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="883.0" layoutY="417.0" text="Net Total:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="112.0" layoutY="243.0" text="Vehicle No:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cmbVehicleId" layoutX="112.0" layoutY="266.0" onAction="#cmbVehicleIdOnAction" prefHeight="33.0" prefWidth="203.0" />
+      <DatePicker fx:id="appointDate" layoutX="960.0" layoutY="96.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </DatePicker>
+   </children>
 </AnchorPane>

@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerModel {
     public static String generateNextOrderId() throws SQLException {
@@ -34,6 +36,49 @@ public class CustomerModel {
                 return "C001";
             }
 
+    }
+
+    public static List<CustomerDto> loadAllItems() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM customer";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        List<CustomerDto> itemList = new ArrayList<>();
+
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()) {
+            itemList.add(new CustomerDto(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4)
+            ));
+        }
+
+        return itemList;
+    }
+
+    public static CustomerDto searchCustomer(String id) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection ();
+
+        String sql = "SELECT * FROM customer WHERE cust_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, id);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        CustomerDto dto = null;
+
+        if(resultSet.next()) {
+            String cust_id = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            String address = resultSet.getString(3);
+            String tel = resultSet.getString(4);
+
+            dto = new CustomerDto(cust_id, name, address, tel);
+        }
+        return dto;
     }
 
     public boolean saveCustomer(CustomerDto dto) throws SQLException {
