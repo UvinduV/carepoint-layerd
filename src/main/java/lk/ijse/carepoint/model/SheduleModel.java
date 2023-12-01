@@ -5,6 +5,8 @@ import lk.ijse.carepoint.dto.CustomerDto;
 import lk.ijse.carepoint.dto.SheduleDto;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SheduleModel {
 
@@ -73,4 +75,59 @@ public class SheduleModel {
         }
         return dto;
     }
+
+    public List<SheduleDto> getAllShedule(Date dateIn) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM shedule where date(Sh_date) = ? order by Sh_date";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setDate(1, dateIn);
+        ResultSet resultSet = pstm.executeQuery();
+
+
+        ArrayList<SheduleDto> dtoList = new ArrayList<>();
+
+        while(resultSet.next()) {
+            dtoList.add(
+                    new SheduleDto(
+                            resultSet.getString(1),
+                            resultSet.getDate(2),
+                            resultSet.getString(3),
+                            resultSet.getString(4)
+                    )
+            );
+        }
+        return dtoList;
+    }
+   /* public List<SheduleDto> getAllShedule(Date dateIn) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM shedule WHERE DATE(Sh_date) = ? ORDER BY Sh_date";
+        //String sql = "SELECT * FROM shedule WHERE DATE(Sh_date) = ? ORDER BY Sh_date";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        //pstm.setDate(1, dateIn);  // Set the parameter value before executing the query
+        ResultSet resultSet = pstm.executeQuery();
+
+        ArrayList<SheduleDto> dtoList = new ArrayList<>();
+
+        while(resultSet.next()) {
+            dtoList.add(
+                    new SheduleDto(
+                            resultSet.getString(1),
+                            resultSet.getDate(2),
+                            resultSet.getString(3),
+                            resultSet.getString(4)
+                    )
+            );
+        }
+
+        // Close resources (ResultSet, PreparedStatement, and Connection)
+        resultSet.close();
+        pstm.close();
+        connection.close();
+
+        return dtoList;
+    }*/
+
+
 }

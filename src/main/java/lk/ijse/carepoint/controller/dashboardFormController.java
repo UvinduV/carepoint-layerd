@@ -71,7 +71,10 @@ public class dashboardFormController {
     public void btnRecodsOnAction(ActionEvent event) {
     }
 
-    public void btnItemsOnAction(ActionEvent event) {
+    public void btnItemsOnAction(ActionEvent event) throws IOException {
+        rootHome.getChildren().clear();
+        rootHome.getChildren().add(FXMLLoader.load(getClass().getResource("/view/item_form.fxml")));
+
     }
 
     public void btnLogoutOnAction(ActionEvent event) throws IOException {
@@ -102,5 +105,11 @@ public class dashboardFormController {
     private void setTime() {
 //        LocalTime now = LocalTime.now();
         lblTime.setText(String.valueOf(LocalDate.now()));
+    }
+
+    public void btnAppointPane(MouseEvent mouseEvent) throws IOException {
+        rootHome.getChildren().clear();
+        rootHome.getChildren().add(FXMLLoader.load(getClass().getResource("/view/serviceAppointFrom")));
+
     }
 }

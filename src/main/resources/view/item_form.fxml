@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.carepoint.controller.itemFormController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="itemPanel" prefHeight="615.0" prefWidth="1228.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carepoint.controller.itemFormController">
+   <children>
+      <Label layoutX="489.0" layoutY="24.0" text="Item Details">
+         <font>
+            <Font name="Arial Bold" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="92.0" layoutY="129.0" text="Item Code  :" textFill="#220909">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="86.0" layoutY="219.0" text="Description :" textFill="#220909">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="86.0" layoutY="305.0" text="Unit Price   :" textFill="#220909">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="86.0" layoutY="391.0" text="Qty On Hand:" textFill="#220909">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCode" layoutX="201.0" layoutY="121.0" onAction="#codeSearchOnAction" prefHeight="35.0" prefWidth="245.0" promptText="I001" style="-fx-background-color: #eeeaea; -fx-background-radius: 40;" />
+      <TextField fx:id="txtDescription" layoutX="201.0" layoutY="211.0" prefHeight="35.0" prefWidth="245.0" promptText="Item Name" style="-fx-background-color: #eeeaea; -fx-background-radius: 40;" />
+      <TextField fx:id="txtUnitPrice" layoutX="201.0" layoutY="297.0" prefHeight="35.0" prefWidth="245.0" promptText="0000.00" style="-fx-background-color: #eeeaea; -fx-background-radius: 40;" />
+      <TextField fx:id="txtQtyOnHand" layoutX="201.0" layoutY="383.0" prefHeight="35.0" prefWidth="245.0" promptText="00" style="-fx-background-color: #eeeaea; -fx-background-radius: 40;" />
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="60.0" layoutY="526.0" onAction="#btnClearOnAction" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 40;" text="clear" />
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="250.0" layoutY="526.0" onAction="#btnUpdateOnAction" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #576574; -fx-background-radius: 40;" text="Update" />
+      <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="438.0" layoutY="526.0" onAction="#btnSaveOnAction" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #000000; -fx-background-radius: 40;" text="Save" />
+      <TableView fx:id="tblItem" layoutX="568.0" layoutY="121.0" prefHeight="343.0" prefWidth="557.0">
+        <columns>
+          <TableColumn fx:id="colCode" prefWidth="88.0" text="code" />
+          <TableColumn fx:id="colDescription" prefWidth="205.0" text="Description" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="96.0" text="UnitPrice" />
+            <TableColumn fx:id="colQtyOnHand" prefWidth="101.0" text="Qty On Hand" />
+            <TableColumn fx:id="colAction" prefWidth="70.0" text="Action" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnBack" layoutX="1040.0" layoutY="536.0" onAction="#btnBackOnAction" prefHeight="43.0" prefWidth="85.0" style="-fx-background-color: grey;" text="BaCK" textFill="#f8f1f1" />
+   </children>
 </AnchorPane>

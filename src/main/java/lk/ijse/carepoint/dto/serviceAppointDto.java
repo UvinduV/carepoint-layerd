@@ -15,6 +15,7 @@ public class serviceAppointDto {
     String vehicle_No;
     String shedule_Id;
     String package_Id;
+    String payemntId;
     Date date;
     String time;
     Double amount;

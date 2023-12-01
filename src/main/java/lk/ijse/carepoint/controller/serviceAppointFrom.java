@@ -177,6 +177,7 @@ public class serviceAppointFrom {
         String vehicle_No = cmbVehicleId.getValue();
         String shedule_Id = txtSheduleID.getText();
         String package_Id = cmbPackageCode.getValue();
+        String paymentId = null;
         Date date = Date.valueOf(lblAppointDate.getText());
         String time= lblTimeAppoint.getText();
         Double amount= Double.valueOf(lblUnitPrice.getText());
@@ -189,7 +190,7 @@ public class serviceAppointFrom {
                 new Alert(Alert.AlertType.ERROR, "Please enter all fields").show();
                 return;
             }
-            var dto = new serviceAppointDto(appoint_Id, cust_Id, vehicle_No, shedule_Id, package_Id, date, time, amount);
+            var dto = new serviceAppointDto(appoint_Id, cust_Id, vehicle_No, shedule_Id, package_Id,paymentId, date, time, amount);
 
             try {
                 boolean isSaved = ServiceAppointModel.saveAppoint(dto);
@@ -198,12 +199,18 @@ public class serviceAppointFrom {
 
                     new Alert(Alert.AlertType.CONFIRMATION, "Appoint saved sucessfully!").show();
                     clearFields();
+                    navigateToWaitingAppoint();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | IOException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
 
         //}
+
+    }
+    private void navigateToWaitingAppoint() throws IOException {
+        AppointPanel.getChildren().clear();
+        AppointPanel.getChildren().add(FXMLLoader.load(getClass().getResource("/view/waitingAppointForm.fxml")));
 
     }
 

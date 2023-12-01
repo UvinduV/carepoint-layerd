@@ -19,6 +19,7 @@ import lk.ijse.carepoint.model.SheduleModel;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 public class sheduleFormController {
@@ -108,6 +109,8 @@ public class sheduleFormController {
     @FXML
     private TableView<scheduleTm> tblOrderCart;
 
+    private SheduleModel sheduleModel = new SheduleModel();
+
     private ObservableList<scheduleTm> obListShedule = FXCollections.observableArrayList();
 
 
@@ -135,6 +138,7 @@ public class sheduleFormController {
 
 
     }
+
     public void schedueleTable(String time,String avil){
         generateNextScheduleId();
         String shedule_Id = lblScheduleIDIcon.getText();
@@ -348,6 +352,33 @@ public class sheduleFormController {
     }
 
     public void scheduleDateOnAction(ActionEvent event) {
+            Date date = Date.valueOf(scheduleDate.getValue());
+
+            var model = new SheduleModel();
+
+            ObservableList<scheduleTm> obList = FXCollections.observableArrayList();
+
+            try {
+                System.out.println(date);
+                List<SheduleDto> dtoList = model.getAllShedule(date);
+
+                for (SheduleDto dto : dtoList) {
+                    obList.add(
+                            new scheduleTm(
+                                    dto.getShedule_Id(),
+                                    dto.getDate(),
+                                    dto.getAvaliability(),
+                                    dto.getDescription()
+                            )
+                    );
+                }
+
+                tblOrderCart.setItems(obList);
+                //tblOrderCart.refresh();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
 
     }
 }

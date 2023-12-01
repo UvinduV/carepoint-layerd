@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ServiceAppointModel {
     public static String generateNextAppointId() throws SQLException {
@@ -45,7 +47,7 @@ public class ServiceAppointModel {
         pstm.setString(3, dto.getVehicle_No());
         pstm.setString(4, dto.getShedule_Id());
         pstm.setString(5, dto.getPackage_Id());
-       // pstm.setString(6, dto.getName());
+        pstm.setString(6, dto.getPayemntId());
         pstm.setString(7, String.valueOf(dto.getDate()));
         pstm.setString(8, dto.getTime());
         pstm.setString(9, String.valueOf(dto.getAmount()));
@@ -53,5 +55,32 @@ public class ServiceAppointModel {
         boolean isSaved = pstm.executeUpdate() > 0;
 
         return isSaved;
+    }
+
+    public List<serviceAppointDto> getAllAppointment() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM appointment";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+
+        ArrayList<serviceAppointDto> dtoList = new ArrayList<>();
+
+        while(resultSet.next()) {
+            dtoList.add(
+                    new serviceAppointDto(
+                            resultSet.getString(1),
+                            resultSet.getString(2),
+                            resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getString(5),
+                            resultSet.getString(6),
+                            resultSet.getDate(7),
+                            resultSet.getString(8),
+                            resultSet.getDouble(9)
+                    )
+            );
+        }
+        return dtoList;
     }
 }
