@@ -101,22 +101,22 @@
             </Label>
             <Label fx:id="lblDate" layoutX="1015.0" layoutY="5.0" text="date">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Arial" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="738.0" layoutY="9.0" text="Time">
+            <Label layoutX="741.0" layoutY="6.0" text="Time">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="lblTime" layoutX="785.0" layoutY="8.0" text="time">
+            <Label fx:id="lblTime" layoutX="788.0" layoutY="5.0" text="time">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Arial" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="73.0" layoutY="8.0" text="Welcome to carepoint !">
+            <Label layoutX="77.0" layoutY="4.0" prefHeight="24.0" prefWidth="189.0" text="Welcome  to  carepoint !">
                <font>
-                  <Font name="Arial Bold" size="17.0" />
+                  <Font name="Yrsa SemiBold Italic" size="20.0" />
                </font>
             </Label>
          </children></AnchorPane>

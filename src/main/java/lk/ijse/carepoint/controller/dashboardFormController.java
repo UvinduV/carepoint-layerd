@@ -57,7 +57,9 @@ public class dashboardFormController {
         rootNode.getChildren().add(FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml")));
     }
 
-    public void btnSheduleOnAction(ActionEvent event) {
+    public void btnSheduleOnAction(ActionEvent event) throws IOException {
+        rootHome.getChildren().clear();
+        rootHome.getChildren().add(FXMLLoader.load(getClass().getResource("/view/shedule_form.fxml")));
 
     }
 

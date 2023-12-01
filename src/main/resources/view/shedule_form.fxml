@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.carepoint.controller.sheduleFormController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="schedulePanel" prefHeight="615.0" prefWidth="1228.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carepoint.controller.sheduleFormController">
+   <children>
+      <AnchorPane layoutX="23.0" layoutY="14.0" prefHeight="587.0" prefWidth="551.0" style="-fx-background-color: #dad9b3; -fx-background-radius: 20;">
+         <children>
+            <JFXButton fx:id="F01Slot9time" buttonType="RAISED" layoutX="77.0" layoutY="138.0" onAction="#F01Slot9timeOnAction" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #ffffff; -fx-background-radius: 40;" text="9-12 A.M" />
+            <Label fx:id="lblF1Time9" layoutX="108.0" layoutY="195.0" textFill="#3dbfa1" />
+            <JFXButton fx:id="F01Slot1Time" buttonType="RAISED" layoutX="255.0" layoutY="138.0" onAction="#F01Slot1TimeOnAction" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #ffffff; -fx-background-radius: 40;" text="1-4 A.M" />
+            <Label fx:id="lblF1Time1" layoutX="286.0" layoutY="195.0" textFill="#3dbfa1" />
+            <JFXButton fx:id="F02Slot9Time" buttonType="RAISED" layoutX="77.0" layoutY="234.0" onAction="#F02Slot9TimeOnAction" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #ffffff; -fx-background-radius: 40;" text="9-12 A.M" />
+            <Label fx:id="lblF2Time9" layoutX="108.0" layoutY="291.0" textFill="#3dbfa1" />
+            <JFXButton fx:id="F02Slot1Time" buttonType="RAISED" layoutX="255.0" layoutY="234.0" onAction="#F02Slot1TimeOnAction" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #ffffff; -fx-background-radius: 40;" text="1-4 A.M" />
+            <Label fx:id="lblF2Time1" layoutX="286.0" layoutY="291.0" textFill="#3dbfa1" />
+            <JFXButton fx:id="H01Slot9Time" buttonType="RAISED" layoutX="77.0" layoutY="364.0" onAction="#H01Slot9TimeOnAction" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #ffffff; -fx-background-radius: 40;" text="9-10 A.M" />
+            <Label fx:id="lblH1Time9" layoutX="108.0" layoutY="421.0" textFill="#3dbfa1" />
+            <JFXButton fx:id="H01Slot10Time" buttonType="RAISED" layoutX="255.0" layoutY="364.0" onAction="#H01Slot10TimeOnAction" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #ffffff; -fx-background-radius: 40;" text="10-11 A.M" />
+            <Label fx:id="lblH1Time10" layoutX="286.0" layoutY="421.0" textFill="#3dbfa1" />
+            <JFXButton fx:id="H01Slot11Time" buttonType="RAISED" layoutX="431.0" layoutY="364.0" onAction="#H01Slot11TimeOnAction" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #ffffff; -fx-background-radius: 40;" text="11-12 A.M" />
+            <Label fx:id="lblH1Time11" layoutX="462.0" layoutY="421.0" textFill="#3dbfa1" />
+            <JFXButton fx:id="H02Slot9Time" buttonType="RAISED" layoutX="77.0" layoutY="461.0" onAction="#H02Slot9TimeOnAction" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #ffffff; -fx-background-radius: 40;" text="1-2 P.M" />
+            <Label fx:id="lblH2Time9" layoutX="108.0" layoutY="518.0" textFill="#3dbfa1" />
+            <JFXButton fx:id="H02Slot10Time" buttonType="RAISED" layoutX="255.0" layoutY="461.0" onAction="#H02Slot10TimeOnAction" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #ffffff; -fx-background-radius: 40;" text="2-3 P.M" />
+            <Label fx:id="lblH2Time10" layoutX="286.0" layoutY="518.0" textFill="#3dbfa1" />
+            <JFXButton fx:id="H02Slot11Time" buttonType="RAISED" layoutX="431.0" layoutY="461.0" onAction="#H02Slot11TimeOnAction" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #ffffff; -fx-background-radius: 40;" text="3-4 P.M" />
+            <Label fx:id="lblH2Time11" layoutX="462.0" layoutY="518.0" textFill="#3dbfa1" />
+            <DatePicker fx:id="scheduleDate" layoutX="165.0" layoutY="20.0" onAction="#scheduleDateOnAction" prefHeight="35.0" prefWidth="243.0" style="-fx-background-color: #ffffff;" />
+            <Label layoutX="20.0" layoutY="152.0" text="F 01" textFill="#433b3b">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="246.0" text="F 02" textFill="#433b3b">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="376.0" text="H 01" textFill="#433b3b">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="473.0" text="H 02" textFill="#433b3b">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblScheduleIDIcon" layoutX="59.0" layoutY="68.0" textFill="#cd0909">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tblOrderCart" layoutX="597.0" layoutY="94.0" prefHeight="200.0" prefWidth="613.0">
+         <columns>
+            <TableColumn fx:id="colIScheduleId" prefWidth="99.0" text="Schedule Id" />
+            <TableColumn fx:id="colDate" prefWidth="138.0" text="Date" />
+            <TableColumn fx:id="colTimeSlot" prefWidth="127.0" text="Time Slot" />
+            <TableColumn fx:id="cotScheduleType" prefWidth="129.0" text="Schedule Type" />
+            <TableColumn fx:id="colAction" prefWidth="126.0" text="Action" />
+         </columns>
+      </TableView>
+      <Label layoutX="777.0" layoutY="33.0" text="Schedule View">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

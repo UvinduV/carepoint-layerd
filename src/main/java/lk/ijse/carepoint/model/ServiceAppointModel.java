@@ -1,6 +1,7 @@
 package lk.ijse.carepoint.model;
 
 import lk.ijse.carepoint.db.DbConnection;
+import lk.ijse.carepoint.dto.serviceAppointDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,5 +32,26 @@ public class ServiceAppointModel {
         } else {
             return "A001";
         }
+    }
+
+    public static boolean saveAppoint(serviceAppointDto dto) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "INSERT INTO appointment VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setString(1, dto.getAppoint_Id());
+        pstm.setString(2, dto.getCust_Id());
+        pstm.setString(3, dto.getVehicle_No());
+        pstm.setString(4, dto.getShedule_Id());
+        pstm.setString(5, dto.getPackage_Id());
+       // pstm.setString(6, dto.getName());
+        pstm.setString(7, String.valueOf(dto.getDate()));
+        pstm.setString(8, dto.getTime());
+        pstm.setString(9, String.valueOf(dto.getAmount()));
+
+        boolean isSaved = pstm.executeUpdate() > 0;
+
+        return isSaved;
     }
 }

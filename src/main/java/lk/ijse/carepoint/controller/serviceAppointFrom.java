@@ -11,14 +11,9 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.carepoint.dto.CustomerDto;
-import lk.ijse.carepoint.dto.PackageDto;
-import lk.ijse.carepoint.dto.VehicleDto;
+import lk.ijse.carepoint.dto.*;
 import lk.ijse.carepoint.dto.tm.appointmentTm;
-import lk.ijse.carepoint.model.CustomerModel;
-import lk.ijse.carepoint.model.PackageModel;
-import lk.ijse.carepoint.model.ServiceAppointModel;
-import lk.ijse.carepoint.model.VehicleModel;
+import lk.ijse.carepoint.model.*;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -34,40 +29,19 @@ public class serviceAppointFrom {
     private AnchorPane AppointPanel;
 
     @FXML
-    private DatePicker appointDate;
-
-    @FXML
-    private JFXButton btnAddToCart;
-
-    @FXML
-    private JFXComboBox<String> cmbCustomerId;
-
-    @FXML
     private JFXComboBox<String> cmbPackageCode;
 
     @FXML
     private JFXComboBox<String> cmbVehicleId;
 
     @FXML
-    private TableColumn<?, ?> colAction;
-
-    @FXML
-    private TableColumn<?, ?> colIVehicleNo;
-
-    @FXML
-    private TableColumn<?, ?> colPackageId;
-
-    @FXML
-    private TableColumn<?, ?> colTotal;
-
-    @FXML
-    private TableColumn<?, ?> colType;
-
-    @FXML
-    private TableColumn<?, ?> colUnitPrice;
+    private Label lblAppointDate;
 
     @FXML
     private Label lblAppointId;
+
+    @FXML
+    private Label lblCustID;
 
     @FXML
     private Label lblCustomerName;
@@ -76,30 +50,27 @@ public class serviceAppointFrom {
     private Label lblDescription;
 
     @FXML
-    private Label lblNetTotal;
+    private Label lblTimeAppoint;
 
     @FXML
     private Label lblUnitPrice;
 
     @FXML
-    private TableView<appointmentTm> tblOrderCart;
+    private TextField txtSheduleID;
+
+    @FXML
+    private TextField txtTelcustomer;
 
     private ObservableList<appointmentTm> obList = FXCollections.observableArrayList();
 
+
+
     public void initialize() {
-        loadToCustomerID();
+        //loadToCustomerID();
         loadToVehicleID();
         generateNextAppointId();
         loadToPackageID();
-        setCellValueFactory();
-    }
-    private void setCellValueFactory() {
-        colIVehicleNo.setCellValueFactory(new PropertyValueFactory<>("vehicleNo"));
-        colPackageId.setCellValueFactory(new PropertyValueFactory<>("packageId"));
-        colType.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
-        colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
+
     }
     private void generateNextAppointId() {
         try {
@@ -108,35 +79,15 @@ public class serviceAppointFrom {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+
+        //nextToDataShedule;
     }
 
-    public void cmbCustomerOnAction(ActionEvent event) {
-        String id = cmbCustomerId.getValue();
-//        CustomerModel customerModel = new CustomerModel();
-        try {
-            CustomerDto customerDto = CustomerModel.searchCustomer(id);
-            lblCustomerName.setText(customerDto.getName());
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    private void loadToCustomerID() {
-        ObservableList<String> obList = FXCollections.observableArrayList();
-        try {
-            List<CustomerDto> CustomerDtos = CustomerModel.loadAllItems();
 
-            for (CustomerDto dto : CustomerDtos) {
-                obList.add(dto.getCust_id());
-            }
-            cmbCustomerId.setItems(obList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+////////////////////////////////////////////////////////
     public void cmbPackageOnAction(ActionEvent event) {
-        String id = cmbPackageCode.getValue();
+        String id =  cmbPackageCode.getValue();
 //        CustomerModel customerModel = new CustomerModel();
         try {
             PackageDto packageDto = PackageModel.searchPackage(id);
@@ -161,7 +112,7 @@ public class serviceAppointFrom {
         }
     }
 
-    public void btnAddToCartOnAction(ActionEvent event) {
+   /* public void btnAddToCartOnAction(ActionEvent event) {
         String vehicleNo = cmbVehicleId.getValue();
         String packageId = cmbPackageCode.getValue();
         String type = lblDescription.getText();
@@ -192,9 +143,9 @@ public class serviceAppointFrom {
 
         tblOrderCart.setItems(obList);
         calculateTotal();
-    }
+    }*/
 
-    private void calculateTotal() {
+    /*private void calculateTotal() {
         double total = 0;
         for (int i = 0; i < tblOrderCart.getItems().size(); i++) {
             total += (double) colTotal.getCellData(i);
@@ -202,7 +153,7 @@ public class serviceAppointFrom {
         lblNetTotal.setText(String.valueOf(total));
     }
 
-    private void setRemoveBtnAction(Button btn) {
+   private void setRemoveBtnAction(Button btn) {
         btn.setOnAction((e) -> {
             ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -210,37 +161,61 @@ public class serviceAppointFrom {
             Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
 
             if (type.orElse(no) == yes) {
-                int focusedIndex = tblOrderCart.getSelectionModel().getSelectedIndex();
-
+                int focusedIndex = tblOrderCart.getSelectionModel().getFocusedIndex();
                 obList.remove(focusedIndex);
+                //obList.remove(focusedIndex);
                 tblOrderCart.refresh();
                 calculateTotal();
             }
         });
-    }
+    }*/
 
 
     public void btnPlaceOrderOnAction(ActionEvent event) {
-        String appointId = lblAppointId.getText();
-        Date date = Date.valueOf(appointDate.getValue());
-        String customerId = cmbCustomerId.getValue();
+        String appoint_Id = lblAppointId.getText();
+        String cust_Id = lblCustID.getText();
+        String vehicle_No = cmbVehicleId.getValue();
+        String shedule_Id = txtSheduleID.getText();
+        String package_Id = cmbPackageCode.getValue();
+        Date date = Date.valueOf(lblAppointDate.getText());
+        String time= lblTimeAppoint.getText();
+        Double amount= Double.valueOf(lblUnitPrice.getText());
 
-      /*  List<appointmentTm> cartTmList = new ArrayList<>();
-        for (int i = 0; i < tblOrderCart.getItems().size(); i++) {
-            appointmentTm appointmentTm = tblOrderCart.getSelectionModel().getSelectedItem();
+        //boolean isValidation = validateAppoint();
+       // if(isValidation) {
+            //new Alert(Alert.AlertType.INFORMATION, "valied customer").show();
 
-            cartTmList.add(appointmentTm);
-        }
-
-        var serviceAppointDto = new serviceAppointDto(appointId, date, customerId, cartTmList);
-        try {
-            boolean isSuccess = createAppoint.placeOrder(placeOrderDto);
-            if (isSuccess) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Order Success!").show();
+            if (appoint_Id.isEmpty() || cust_Id.isEmpty() || vehicle_No.isEmpty() || shedule_Id.isEmpty() || package_Id.isEmpty() || date.toString().isEmpty() || time.isEmpty() || amount.toString().isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "Please enter all fields").show();
+                return;
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }*/
+            var dto = new serviceAppointDto(appoint_Id, cust_Id, vehicle_No, shedule_Id, package_Id, date, time, amount);
+
+            try {
+                boolean isSaved = ServiceAppointModel.saveAppoint(dto);
+
+                if (isSaved) {
+
+                    new Alert(Alert.AlertType.CONFIRMATION, "Appoint saved sucessfully!").show();
+                    clearFields();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            }
+
+        //}
+
+    }
+
+    private void clearFields() {
+        lblAppointId.setText("");
+        lblCustID.setText("");
+        cmbVehicleId.getSelectionModel().clearSelection();
+        txtSheduleID.setText("");
+        cmbPackageCode.getSelectionModel().clearSelection();
+        lblAppointDate.setText("");
+        lblTimeAppoint.setText("");
+        lblUnitPrice.setText("");
     }
 
     public void btnBackOnAction(ActionEvent event) throws IOException {
@@ -250,15 +225,7 @@ public class serviceAppointFrom {
     }
 
     public void cmbVehicleIdOnAction(ActionEvent event) {
-       /* String id = cmbVehicleId.getValue();
-//        CustomerModel customerModel = new CustomerModel();
-        try {
-            VehicleDto vehicleDt0 = VehicleModel.searchVehicle(id);
-            lbl.setText(customerDto.getName());
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }*/
     }
     private void loadToVehicleID() {
         ObservableList<String> obList = FXCollections.observableArrayList();
@@ -271,6 +238,44 @@ public class serviceAppointFrom {
             cmbVehicleId.setItems(obList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void txtTelCustOnAction(ActionEvent event) {
+        String tel = txtTelcustomer.getText();
+
+//        var model = new CustomerModel();
+        try {
+            CustomerDto customerDto = CustomerModel.searchCustomerID(tel);
+//            System.out.println(customerDto);
+            if (customerDto != null) {
+                lblCustID.setText(customerDto.getCust_id());
+                lblCustomerName.setText(customerDto.getName());
+                txtTelcustomer.setText(customerDto.getTel());
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "customer not found").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
+    public void txtSheduleIDOnAction(ActionEvent event) {
+        String shedule_ID = txtSheduleID.getText();
+
+
+        try {
+            SheduleDto sheduleDto = SheduleModel.searchSheduleID(shedule_ID);
+
+            if (sheduleDto != null) {
+                txtSheduleID.setText(sheduleDto.getShedule_Id());
+                lblAppointDate.setText(String.valueOf(sheduleDto.getDate()));
+                lblTimeAppoint.setText(sheduleDto.getAvaliability());
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "shedule time not found").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 }

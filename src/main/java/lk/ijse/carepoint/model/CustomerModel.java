@@ -81,6 +81,28 @@ public class CustomerModel {
         return dto;
     }
 
+    public static CustomerDto searchCustomerID(String Tel) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection ();
+
+        String sql = "SELECT * FROM customer WHERE tel = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, Tel);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        CustomerDto dto = null;
+
+        if(resultSet.next()) {
+            String cust_id = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            String address = resultSet.getString(3);
+            String tel = resultSet.getString(4);
+
+            dto = new CustomerDto(cust_id, name, address, tel);
+        }
+        return dto;
+    }
+
     public boolean saveCustomer(CustomerDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

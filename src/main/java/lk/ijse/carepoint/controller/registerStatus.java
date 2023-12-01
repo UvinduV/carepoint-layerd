@@ -1,6 +1,9 @@
 package lk.ijse.carepoint.controller;
 
+//import com.google.protobuf.Message;
 import com.jfoenix.controls.JFXButton;
+//import com.mysql.cj.Session;
+import com.sun.javafx.scene.control.Properties;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,11 +19,19 @@ import lk.ijse.carepoint.dto.VehicleDto;
 import lk.ijse.carepoint.model.CustomerModel;
 import lk.ijse.carepoint.model.VehicleModel;
 
+//import javax.mail.internet.MimeMessage;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.net.PasswordAuthentication;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
+//import java.util.Properties;
 import java.util.regex.Pattern;
 
 public class registerStatus {
@@ -120,12 +131,17 @@ public class registerStatus {
             }
 
             var dto = new VehicleDto(vehicle_no, cust_id, type, fuel_type);
+           String email = "uvindu7070@gmail.com";
 
             try {
                 boolean isSaved = vehicleModel.saveVehicle(dto);
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "vehicle saved sucessfully!").show();
+                   //////
+
+
+                    /////
                     clearFields();
                     navigateToAppoint();
 
@@ -216,6 +232,17 @@ public class registerStatus {
                     loadOwnerId();
                     new Alert(Alert.AlertType.CONFIRMATION, "customer saved sucessfully!").show();
                     clearFields();
+                        ////////
+                    String email = "uvindu7070@gmail.com";
+
+                    EmailSender mail = new EmailSender();
+                    mail.setMsg("Successfully! " + txtName.getText() + "Your Vehicle sevice is completed ! .");
+                    mail.setTo(email);
+                    mail.setSubject("Subject");
+
+                    Thread thread = new Thread(mail);
+                    thread.start();
+                    ///////
                 }
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -254,7 +281,12 @@ public class registerStatus {
         return true;
     }
 
-    public void btnCreateAppointOnAction(ActionEvent event) {
-
+    public void btnCreateAppointOnAction(ActionEvent event) throws IOException {
+        navigateToAppoint();
     }
+    ///////
+
+
+    ////////////////// email sending code///////
+
 }
