@@ -2,6 +2,7 @@ package lk.ijse.carepoint.model;
 
 import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.ItemDto;
+import lk.ijse.carepoint.dto.tm.cartTm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemModel {
+    public static boolean updateItem(List<cartTm> cartTmList) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "UPDATE item SET description = ?, unit_price = ?, qty_on_hand = ? WHERE item_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+       /* pstm.setString(1, ItemDto.getDescription());
+        pstm.setDouble(2, ItemDto.getUnitPrice());
+        pstm.setInt(3, ItemDto.getQtyOnHand());
+        pstm.setString(4, ItemDto.getCode());*/
+        return pstm.executeUpdate() > 0;
+    }
+
     public boolean saveItem(ItemDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql = "INSERT INTO item VALUES(?, ?, ?, ?)";
@@ -26,7 +40,7 @@ public class ItemModel {
 
     public ItemDto searchItem(String code) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
-        String sql = "SELECT * FROM item WHERE code = ?";
+        String sql = "SELECT * FROM item WHERE item_id = ?";
 
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1, code);
@@ -49,7 +63,7 @@ public class ItemModel {
     public boolean updateItem(ItemDto itemDto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "UPDATE item SET description = ?, unit_price = ?, qty_on_hand = ? WHERE code = ?";
+        String sql = "UPDATE item SET description = ?, unit_price = ?, qty_on_hand = ? WHERE item_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, itemDto.getDescription());
@@ -79,5 +93,16 @@ public class ItemModel {
         }
 
         return itemList;
+    }
+
+    public boolean deleteItem(String code) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "DELETE FROM item WHERE item_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setString(1, code);
+
+        return pstm.executeUpdate() > 0;
     }
 }

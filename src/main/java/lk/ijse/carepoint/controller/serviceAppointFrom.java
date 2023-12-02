@@ -235,9 +235,10 @@ public class serviceAppointFrom {
 
     }
     private void loadToVehicleID() {
+        String custID = lblCustID.getText();
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<VehicleDto> VehicleDtos = VehicleModel.loadAllItems();
+            List<VehicleDto> VehicleDtos = VehicleModel.loadAllvehicles(custID);
 
             for (VehicleDto dto : VehicleDtos) {
                 obList.add(dto.getVehicle_no());

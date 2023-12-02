@@ -1,159 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="waitingAppointPanel" prefHeight="615.0" prefWidth="1228.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carepoint.controller.waitingAppointFormController">
    <children>
-      <AnchorPane fx:id="AddServiceRecodsPanel" layoutX="637.0" layoutY="13.0" prefHeight="590.0" prefWidth="568.0" style="-fx-background-color: #ebe9e9; -fx-background-radius: 20;">
+      <AnchorPane fx:id="AddServiceRecodsPanel" layoutX="590.0" layoutY="14.0" prefHeight="590.0" prefWidth="595.0" style="-fx-background-color: #ebe9e9; -fx-background-radius: 20;">
          <children>
-            <Label layoutX="174.0" layoutY="14.0" text="Service Details" textFill="#876e8a">
+            <Label layoutX="181.0" layoutY="14.0" text="Service Details" textFill="#5d198a">
                <font>
-                  <Font name="Arial Bold" size="32.0" />
+                  <Font name="Arial Black" size="25.0" />
                </font>
             </Label>
-            <Label layoutX="49.0" layoutY="90.0" text="Appoint ID :">
-               <font>
-                  <Font name="Arial Bold" size="17.0" />
-               </font>
-            </Label>
-            <Label layoutX="228.0" layoutY="90.0" text="Customer ID :">
+            <Label layoutX="45.0" layoutY="89.0" text="Appoint ID:">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="lblCustomerId" layoutX="228.0" layoutY="118.0" textFill="#119c71">
-               <font>
-                  <Font name="Arial Black" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="430.0" layoutY="90.0" text="Vehicle No:">
-               <font>
-                  <Font name="Arial Bold" size="17.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblVehicleNo" layoutX="430.0" layoutY="118.0" textFill="#119c71">
-               <font>
-                  <Font name="Arial Black" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="49.0" layoutY="157.0" text="Date">
-               <font>
-                  <Font name="Arial Bold" size="17.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblDate" layoutX="86.0" layoutY="156.0" prefHeight="22.0" prefWidth="139.0" textFill="#119c71">
-               <font>
-                  <Font name="Arial Black" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="232.0" layoutY="157.0" text="Time">
-               <font>
-                  <Font name="Arial Bold" size="17.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblTime" layoutX="283.0" layoutY="156.0" prefHeight="22.0" prefWidth="104.0" textFill="#119c71">
-               <font>
-                  <Font name="Arial Black" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="50.0" layoutY="225.0" text="Code:">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <JFXComboBox fx:id="cmbItemCode" layoutX="98.0" layoutY="223.0" onAction="#cmbItemOnAction" prefHeight="21.0" prefWidth="154.0" />
-            <Label layoutX="288.0" layoutY="225.0" text="Description:">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblDescription" layoutX="399.0" layoutY="222.0" prefHeight="27.0" prefWidth="131.0" textFill="#278d7f">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Label>
-            <Label layoutX="46.0" layoutY="274.0" text="Unit Price:">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblUnitPrice" layoutX="57.0" layoutY="310.0" textFill="#278d7f">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Label>
-            <Label layoutX="163.0" layoutY="274.0" text="Qty. On Hand:">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblQtyOnHand" layoutX="205.0" layoutY="310.0" textFill="#278d7f">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Label>
-            <Label layoutX="317.0" layoutY="274.0" text="Qty:">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtQty" layoutX="303.0" layoutY="296.0" onAction="#txtQtyOnAction" prefHeight="33.0" prefWidth="66.0" />
-            <JFXButton fx:id="btnAddToCart" buttonType="RAISED" layoutX="417.0" layoutY="284.0" onAction="#btnAddToCartOnAction" prefHeight="33.0" prefWidth="120.0" style="-fx-background-color: #3498db;" text="Add to cart" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../thogakade-mvc-clone/src/main/resources/icon/cart.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
+            <TextField fx:id="txtApointId" layoutX="43.0" layoutY="109.0" onAction="#txtAppointIdOnAction" prefHeight="24.0" prefWidth="126.0" style="-fx-background-color: #ffffff;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+            </TextField>
+            <Label layoutX="231.0" layoutY="89.0" text="Customer ID:">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCustID" layoutX="230.0" layoutY="110.0" textFill="#0f9058">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="434.0" layoutY="89.0" text="Name:">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCustName" layoutX="434.0" layoutY="110.0" textFill="#0f9058">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="143.0" text="Date:">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAppointDate" layoutX="44.0" layoutY="163.0" textFill="#0f9058">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="231.0" layoutY="143.0" text="Time:">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAppointTime" layoutX="230.0" layoutY="163.0" textFill="#0f9058">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="434.0" layoutY="143.0" text="Amount:">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAmount" layoutX="434.0" layoutY="163.0" textFill="#0f9058">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="219.0" text="Item Code">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbItemCode" layoutX="45.0" layoutY="239.0" onAction="#cmbItemCodeOnAction" prefHeight="24.0" prefWidth="126.0" style="-fx-background-color: #ffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+            <Label layoutX="230.0" layoutY="219.0" text="Description">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDesc" layoutX="231.0" layoutY="239.0" textFill="#0f9058">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="434.0" layoutY="219.0" text="Unit Price">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblUnitPrice" layoutX="434.0" layoutY="239.0" textFill="#0f9058">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="275.0" text="Qty On Hand">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblQtyOnHand" layoutX="45.0" layoutY="295.0" textFill="#0f9058">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="233.0" layoutY="275.0" text="Qty:">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtQty" layoutX="233.0" layoutY="295.0" prefHeight="38.0" prefWidth="62.0" />
+            <JFXButton fx:id="btnAddCart" buttonType="RAISED" layoutX="354.0" layoutY="295.0" onAction="#btnAddCartOnAction" prefHeight="38.0" prefWidth="80.0" style="-fx-background-color: #3a73c9; -fx-background-radius: 10;" text="Add Cart" textFill="#f6f7f8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
             </JFXButton>
-            <TextField layoutX="46.0" layoutY="117.0" prefHeight="24.0" prefWidth="112.0" />
-            <TableView fx:id="tblAppoint1" layoutX="14.0" layoutY="340.0" prefHeight="159.0" prefWidth="538.0">
-               <columns>
-                  <TableColumn fx:id="colAppointId1" prefWidth="100.0" text="code" />
-                  <TableColumn fx:id="colCustId1" prefWidth="129.0" text="Description" />
-                  <TableColumn fx:id="colVehicleId1" prefWidth="64.0" text="qty" />
-                  <TableColumn fx:id="colDate1" prefWidth="133.0" text="Price" />
-                  <TableColumn fx:id="colAction1" prefWidth="113.0" text="Action" />
-               </columns>
+            <TableView fx:id="tblOderCart" layoutX="22.0" layoutY="347.0" prefHeight="144.0" prefWidth="559.0">
+              <columns>
+                <TableColumn fx:id="colCode" prefWidth="86.0" text="Item Code" />
+                <TableColumn fx:id="colDesc" prefWidth="143.0" text="Description" />
+                  <TableColumn fx:id="colQty" prefWidth="53.0" text="Qty" />
+                  <TableColumn fx:id="colPrice" prefWidth="97.0" text=" Price" />
+                  <TableColumn fx:id="colTotal" minWidth="5.0" prefWidth="98.0" text="Total" />
+                  <TableColumn fx:id="colAction" text="Action" />
+              </columns>
             </TableView>
-            <Label layoutX="11.0" layoutY="522.0" text="Total Price:">
+            <Label layoutX="17.0" layoutY="520.0" text="Total Pay:">
                <font>
-                  <Font name="Arial Bold" size="17.0" />
+                  <Font name="Arial Black" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="104.0" layoutY="521.0" textFill="#d70c0c">
+            <Label fx:id="lblNetTotal" layoutX="122.0" layoutY="520.0" text="Label" textFill="#d72118">
                <font>
-                  <Font name="Arial Black" size="14.0" />
+                  <Font name="Arial Black" size="18.0" />
                </font>
             </Label>
-            <JFXButton layoutX="353.0" layoutY="514.0" prefHeight="37.0" prefWidth="189.0" style="-fx-background-color: #000000; -fx-background-radius: 40;" text="Service Completed" textFill="#f5f3f3">
+            <JFXButton fx:id="btnServiceComplete" buttonType="RAISED" layoutX="361.0" layoutY="515.0" onAction="#btnServiceCompleteOnAction" prefHeight="38.0" prefWidth="179.0" style="-fx-background-color: #000000; -fx-background-radius: 40;" text="Service Complete" textFill="#f6f7f8">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
             </JFXButton>
          </children></AnchorPane>
-      <TableView fx:id="tblAppoint" layoutX="14.0" layoutY="73.0" prefHeight="506.0" prefWidth="612.0">
+      <TableView fx:id="tblAppoint" layoutX="14.0" layoutY="73.0" prefHeight="506.0" prefWidth="518.0">
          <columns>
             <TableColumn fx:id="colAppointId" prefWidth="100.0" text="Appoint ID" />
             <TableColumn fx:id="colCustId" prefWidth="111.0" text="Customer ID" />
             <TableColumn fx:id="colVehicleId" prefWidth="114.0" text="Vehicle No" />
             <TableColumn fx:id="colDate" prefWidth="101.0" text="Date" />
             <TableColumn fx:id="coleTime" prefWidth="90.0" text="Time" />
-            <TableColumn fx:id="colAction" prefWidth="95.0" text="Action" />
          </columns>
       </TableView>
       <Label layoutX="60.0" layoutY="25.0" text="Service Appointment">

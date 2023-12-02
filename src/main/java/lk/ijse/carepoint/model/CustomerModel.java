@@ -59,12 +59,14 @@ public class CustomerModel {
         return itemList;
     }
 
-    public static CustomerDto searchCustomer(String id) throws SQLException {
+
+
+    public static CustomerDto searchCustomerID(String Tel) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection ();
 
-        String sql = "SELECT * FROM customer WHERE cust_id = ?";
+        String sql = "SELECT * FROM customer WHERE tel = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, id);
+        pstm.setString(1, Tel);
 
         ResultSet resultSet = pstm.executeQuery();
 
@@ -81,12 +83,12 @@ public class CustomerModel {
         return dto;
     }
 
-    public static CustomerDto searchCustomerID(String Tel) throws SQLException {
+    public static CustomerDto searchCustomer(String custId) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection ();
 
-        String sql = "SELECT * FROM customer WHERE tel = ?";
+        String sql = "SELECT * FROM customer WHERE cust_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, Tel);
+        pstm.setString(1, custId);
 
         ResultSet resultSet = pstm.executeQuery();
 

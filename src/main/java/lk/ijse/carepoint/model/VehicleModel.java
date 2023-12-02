@@ -36,6 +36,27 @@ public class VehicleModel {
 
     }
 
+    public static List<VehicleDto> loadAllvehicles(String custID) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM vehicle WHERE cust_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, custID);
+        List<VehicleDto> itemList = new ArrayList<>();
+
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()) {
+            itemList.add(new VehicleDto(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4)
+            ));
+        }
+
+        return itemList;
+    }
+
     public boolean saveVehicle(VehicleDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

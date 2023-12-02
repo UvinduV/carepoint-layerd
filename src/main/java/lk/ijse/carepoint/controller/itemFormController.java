@@ -1,19 +1,34 @@
 package lk.ijse.carepoint.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import lk.ijse.carepoint.dto.ItemDto;
 import lk.ijse.carepoint.dto.tm.itemTm;
 import lk.ijse.carepoint.model.ItemModel;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class itemFormController {
+    @FXML
+    private JFXButton btnBack;
+
+    @FXML
+    private JFXButton btnClear;
+
+    @FXML
+    private JFXButton btnSave;
+
+    @FXML
+    private JFXButton btnUpdate;
+
     @FXML
     private TableColumn<?, ?> colAction;
 
@@ -28,6 +43,9 @@ public class itemFormController {
 
     @FXML
     private TableColumn<?, ?> colUnitPrice;
+
+    @FXML
+    private AnchorPane itemPanel;
 
     @FXML
     private TableView<itemTm> tblItem;
@@ -49,7 +67,7 @@ public class itemFormController {
     public void initialize() {
         setCellValueFactory();
         loadAllItems();
-        tableListener();
+        //tableListener();
     }
 
 
@@ -84,6 +102,7 @@ public class itemFormController {
                 ));
             }
             tblItem.setItems(obList);
+            setRemoveBtnAction(obList.get(0).getBtn());
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -97,6 +116,33 @@ public class itemFormController {
             //setData(newValue);
         });
 
+    }
+    private void setRemoveBtnAction(Button btn) {
+        btn.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+            if (type.orElse(no) == yes) {
+                int focusedIndex = tblItem.getSelectionModel().getSelectedIndex();
+                String code = tblItem.getItems().get(focusedIndex).getCode();
+                try {
+                    boolean isDeleted = itemModel.deleteItem(code);
+                    if (isDeleted) {
+                        tblItem.getItems().remove(focusedIndex);
+                        tblItem.refresh();
+                        new Alert(Alert.AlertType.CONFIRMATION, "customer deleted!").show();
+                    } else {
+                        new Alert(Alert.AlertType.CONFIRMATION, "customer not deleted!").show();
+                    }
+                }
+                catch (SQLException ex) {
+                    new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
+                }
+
+            }
+        });
     }
 
 
@@ -128,6 +174,8 @@ public class itemFormController {
         try {
             boolean isSaved = itemModel.saveItem(dto);
             if (isSaved) {
+                loadAllItems();
+                tblItem.refresh();
                 new Alert(Alert.AlertType.CONFIRMATION, "item saved!").show();
                 clearFields();
             }

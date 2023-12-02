@@ -49,7 +49,7 @@ public class dashboardFormController {
 
     public void initialize(){
         lblDate.setText(LocalDate.now().toString());
-        lblTime.setText(java.time.LocalTime.now().toString());
+       // lblTime.setText(java.time.LocalTime.now().toString());
     }
 
     public void btnHomeOnAction(ActionEvent event) throws IOException {
@@ -68,7 +68,10 @@ public class dashboardFormController {
         rootHome.getChildren().add(FXMLLoader.load(getClass().getResource("/view/registerStatus_form.fxml")));
     }
 
-    public void btnRecodsOnAction(ActionEvent event) {
+    public void btnRecodsOnAction(ActionEvent event) throws IOException {
+        rootHome.getChildren().clear();
+        rootHome.getChildren().add(FXMLLoader.load(getClass().getResource("/view/waitingAppointForm.fxml")));
+
     }
 
     public void btnItemsOnAction(ActionEvent event) throws IOException {
@@ -103,7 +106,7 @@ public class dashboardFormController {
         lblDate.setText(String.valueOf(LocalDate.now()));
     }
     private void setTime() {
-//        LocalTime now = LocalTime.now();
+//          LocalTime now = LocalTime.now();
         lblTime.setText(String.valueOf(LocalDate.now()));
     }
 

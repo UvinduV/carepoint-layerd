@@ -1,6 +1,7 @@
 package lk.ijse.carepoint.model;
 
 import lk.ijse.carepoint.db.DbConnection;
+import lk.ijse.carepoint.dto.ItemDto;
 import lk.ijse.carepoint.dto.serviceAppointDto;
 
 import java.sql.Connection;
@@ -82,5 +83,44 @@ public class ServiceAppointModel {
             );
         }
         return dtoList;
+    }
+
+    public serviceAppointDto searchAppointId(String appointId) throws SQLException {
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        String sql = "SELECT * FROM appointment WHERE appoint_id = ?";
+
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, appointId);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        serviceAppointDto dto = null;
+
+        if(resultSet.next()) {
+            dto = new serviceAppointDto(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getString(6),
+                    resultSet.getDate(7),
+                    resultSet.getString(8),
+                    resultSet.getDouble(9)
+            );
+        }
+        return dto;
+    }
+
+    public boolean deleteAppoint(String appointId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "DELETE FROM appointment WHERE appoint_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setString(1, appointId);
+
+        return pstm.executeUpdate() > 0;
     }
 }
