@@ -22,7 +22,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </TextField>
-            <TextField fx:id="txtAddress" layoutX="147.0" layoutY="255.0" onAction="#txtAddressOnAction" prefHeight="36.0" prefWidth="308.0" promptText="Address" style="-fx-background-color: #ffffff; -fx-background-radius: 40;">
+            <TextField fx:id="txtAddress" layoutX="147.0" layoutY="255.0" onAction="#txtAddressOnAction" prefHeight="36.0" prefWidth="308.0" promptText="example@gmail.com" style="-fx-background-color: #ffffff; -fx-background-radius: 40;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -42,7 +42,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="67.0" layoutY="264.0" text="Address:">
+            <Label layoutX="67.0" layoutY="264.0" text="E mail">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -107,7 +107,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <Label layoutX="82.0" layoutY="153.0" prefHeight="19.0" prefWidth="94.0" text="ID             :">
+            <Label layoutX="82.0" layoutY="153.0" prefHeight="19.0" prefWidth="94.0" text="Vehicle No">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

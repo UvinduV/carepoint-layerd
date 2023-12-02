@@ -121,5 +121,6 @@
          </font>
       </Label>
       <Line endX="32.0" endY="361.0" layoutX="676.0" layoutY="144.0" startX="32.0" startY="-11.0" />
+      <Label fx:id="lblcustEmail" layoutX="922.0" layoutY="43.0" />
    </children>
 </AnchorPane>

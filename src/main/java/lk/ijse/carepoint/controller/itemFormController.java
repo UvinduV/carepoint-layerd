@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -12,6 +13,7 @@ import lk.ijse.carepoint.dto.ItemDto;
 import lk.ijse.carepoint.dto.tm.itemTm;
 import lk.ijse.carepoint.model.ItemModel;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -218,6 +220,10 @@ public class itemFormController {
         txtQtyOnHand.setText(String.valueOf(dto.getQtyOnHand()));
     }
 
-    public void btnBackOnAction(ActionEvent event) {
+    public void btnBackOnAction(ActionEvent event) throws IOException {
+        itemPanel.getChildren().clear();
+        itemPanel.getChildren().add(FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml")));
+
+
     }
 }

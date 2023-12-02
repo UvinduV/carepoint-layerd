@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="appoint" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635702ed-7738-46e1-b0f3-398251501fe3">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adaptercare"/>
+	<queryString language="SQL">
+		<![CDATA[select * from appointment]]>
+	</queryString>
+	<field name="appoint_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="appoint_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="appoint_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+		<fieldDescription><![CDATA[Appoint ID]]></fieldDescription>
+	</field>
+	<field name="cust_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cust_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="cust_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="vehicle_no" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="vehicle_no"/>
+		<property name="com.jaspersoft.studio.field.label" value="vehicle_no"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="shedule_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="shedule_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="shedule_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="package_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="package_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="package_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="payment_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="payment_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="payment_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="date"/>
+		<property name="com.jaspersoft.studio.field.label" value="date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="time" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="time"/>
+		<property name="com.jaspersoft.studio.field.label" value="time"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="amount" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="amount"/>
+		<property name="com.jaspersoft.studio.field.label" value="amount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<group name="appoint_id">
+		<groupExpression><![CDATA[$F{appoint_id}]]></groupExpression>
+	</group>
+	<group name="cust_id">
+		<groupExpression><![CDATA[$F{cust_id}]]></groupExpression>
+	</group>
+	<group name="vehicle_no">
+		<groupExpression><![CDATA[$F{vehicle_no}]]></groupExpression>
+	</group>
+	<group name="shedule_id">
+		<groupExpression><![CDATA[$F{shedule_id}]]></groupExpression>
+	</group>
+	<group name="package_id">
+		<groupExpression><![CDATA[$F{package_id}]]></groupExpression>
+	</group>
+	<group name="payment_id">
+		<groupExpression><![CDATA[$F{payment_id}]]></groupExpression>
+	</group>
+	<group name="date">
+		<groupExpression><![CDATA[$F{date}]]></groupExpression>
+	</group>
+	<group name="time">
+		<groupExpression><![CDATA[$F{time}]]></groupExpression>
+	</group>
+	<group name="amount">
+		<groupExpression><![CDATA[$F{amount}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="98" splitType="Stretch">
+			<staticText>
+				<reportElement x="240" y="0" width="157" height="40" uuid="cecebcc4-13bf-44e4-b249-fc52478ff961"/>
+				<textElement>
+					<font fontName="Times New Roman" size="29" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carepoint]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="68" width="190" height="30" uuid="8afb31d1-7e78-4794-ab0c-b349f48004e6"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[Appointment Dateils]]></text>
+			</staticText>
+			<image>
+				<reportElement x="145" y="5" width="80" height="30" uuid="e8a096cb-95b6-4049-905e-ed8d14e5b537"/>
+				<imageExpression><![CDATA["/home/uvindu/Pictures/carwash image/logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="0" width="100" height="30" uuid="a0f08210-fe71-4ba1-b186-961576ce5e5f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2f98b634-4ac3-4816-8ef4-b0cd255335ef"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Appoint_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="0" width="100" height="30" uuid="20a98b3d-ccc6-4da6-b807-fb9280115a4c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="78ec99b2-36ec-4a9a-b658-24fb98eadd27"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[cust_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="0" width="100" height="30" uuid="2cb34c00-2ad5-405f-b0bc-d539a33099b7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0e5c0498-8b4a-4e4a-b891-4acdcd91a7ef"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[vehicle_no]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="0" width="100" height="30" uuid="e95e697c-eefc-4b12-ac0a-1478c3e6171a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1278e34a-9188-428d-b444-276639ced614"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="100" height="30" uuid="125b6a20-22fd-4fd8-aee5-b6d44a319f2d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f0359270-da35-4f3d-a841-50f35798464b"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Time]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="46" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="9" width="100" height="30" uuid="a7207ffc-a893-4748-be26-b0abb1fe7924">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2f98b634-4ac3-4816-8ef4-b0cd255335ef"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{appoint_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="8" width="100" height="30" uuid="8ba4cc28-d73e-4ea5-b251-fff227e8fe06">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="78ec99b2-36ec-4a9a-b658-24fb98eadd27"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cust_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="225" y="8" width="100" height="30" uuid="ee30c780-d224-4a60-867a-dc2b2a1f5ba7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0e5c0498-8b4a-4e4a-b891-4acdcd91a7ef"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vehicle_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="8" width="100" height="30" uuid="3c66b8c4-35ad-4772-ae05-2aa454b4dded">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1278e34a-9188-428d-b444-276639ced614"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="8" width="100" height="30" uuid="a369a9f2-b4b5-4879-9f75-14249835c368">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f0359270-da35-4f3d-a841-50f35798464b"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

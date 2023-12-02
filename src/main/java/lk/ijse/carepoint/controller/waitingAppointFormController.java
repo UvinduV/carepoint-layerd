@@ -23,6 +23,8 @@ import java.util.Optional;
 
 public class waitingAppointFormController {
     @FXML
+    private Label lblcustEmail;
+    @FXML
     private AnchorPane AddServiceRecodsPanel;
 
     @FXML
@@ -330,13 +332,48 @@ public class waitingAppointFormController {
                 loadAllAppointment();
                 tblAppoint.refresh();
 
+                serviceRecodFormController.passData(appointId, customerId, totalprice);
+
                 new Alert(Alert.AlertType.CONFIRMATION, "service complete sucessfully!").show();
+                emailSend(customerId);
                 clearFields();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
+    }
+
+    private void emailSend(String cust_Id) {
+        ///////
+        //CustomerModel.searchCustomer(cust_Id);
+        try {
+            CustomerDto customerDto = CustomerModel.searchCustomer(cust_Id);
+            //            System.out.println(customerDto);
+            if (customerDto != null) {
+                lblcustEmail.setText(customerDto.getAddress());
+            } else {
+                // new Alert(Alert.AlertType.INFORMATION, "customer not found").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+        String email = lblcustEmail.getText();
+
+        System.out.println(email);
+        ///////
+        EmailSender mail = new EmailSender();
+        mail.setMsg( "Dear customer, your vehicleservice is complete. " +"\n"
+                + "Total amount: " + lblNetTotal.getText() +"\n"
+                + "Thank you.!" +"\n"
+                + "\n"
+                + "CarePoint. Tel: 0123456789");
+        mail.setTo(email);
+        mail.setSubject("Subject");
+
+        Thread thread = new Thread(mail);
+        thread.start();
+        ///////
     }
 
     private void clearFields() {

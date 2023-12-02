@@ -176,10 +176,10 @@ public class sheduleFormController {
                     
                     new Alert(Alert.AlertType.CONFIRMATION, "time slot recived sucessfully!").show();
                     clearFields();
-                    nvigateToAppoint();
+                   // nvigateToAppoint();
                     //scheduleDate.refresh();
                 }
-            } catch (SQLException | IOException e) {
+            } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
 

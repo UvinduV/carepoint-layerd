@@ -11,11 +11,17 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.*;
 import lk.ijse.carepoint.dto.tm.appointmentTm;
 import lk.ijse.carepoint.model.*;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -24,6 +30,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class serviceAppointFrom {
+    @FXML
+    private Label lblcustEmail;
 
     @FXML
     private AnchorPane AppointPanel;
@@ -196,18 +204,67 @@ public class serviceAppointFrom {
                 boolean isSaved = ServiceAppointModel.saveAppoint(dto);
 
                 if (isSaved) {
-
                     new Alert(Alert.AlertType.CONFIRMATION, "Appoint saved sucessfully!").show();
                     clearFields();
+                    generateJasper();
+
+
                     navigateToWaitingAppoint();
+                    ///////
+
+                    try {
+                        CustomerDto customerDto = CustomerModel.searchCustomer(cust_Id);
+                        //            System.out.println(customerDto);
+                        if (customerDto != null) {
+                            lblcustEmail.setText(customerDto.getAddress());
+                        } else {
+                            // new Alert(Alert.AlertType.INFORMATION, "customer not found").show();
+                        }
+                    } catch (SQLException e) {
+                        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+                    }
+                    String email = lblcustEmail.getText();
+
+                    System.out.println(email);
+                    ///////
+                    EmailSender mail = new EmailSender();
+                    mail.setMsg( "Dear customer,Your appointment is booked. " +"\n"
+                            + "Appointment ID: " + appoint_Id +"\n"
+                            + "Customer ID: " + cust_Id +"\n"
+                            + "Vehicle No: " + vehicle_No +"\n"
+                            + "Date: " + date +"\n"
+                            + "Time: " + time +"\n");
+                    mail.setTo(email);
+                    mail.setSubject("Subject");
+
+                    Thread thread = new Thread(mail);
+                    thread.start();
+                    ///////
                 }
-            } catch (SQLException | IOException e) {
+            } catch (SQLException | IOException | JRException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
 
         //}
 
     }
+
+    //////////jasper generate//////////////////
+    private void generateJasper() throws JRException, SQLException {
+        InputStream resourceAsStream = getClass().getResourceAsStream("/report/appoint.jrxml");
+        JasperDesign load = JRXmlLoader.load(resourceAsStream);
+        JasperReport jasperReport = JasperCompileManager.compileReport(load);
+
+        JasperPrint jasperPrint =
+                JasperFillManager.fillReport(
+                        jasperReport,
+                        null,
+                        DbConnection.getInstance().getConnection() //database connection
+                );
+
+        JasperViewer.viewReport(jasperPrint, false);
+    }
+
     private void navigateToWaitingAppoint() throws IOException {
         AppointPanel.getChildren().clear();
         AppointPanel.getChildren().add(FXMLLoader.load(getClass().getResource("/view/waitingAppointForm.fxml")));
@@ -238,7 +295,7 @@ public class serviceAppointFrom {
         String custID = lblCustID.getText();
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<VehicleDto> VehicleDtos = VehicleModel.loadAllvehicles(custID);
+            List<VehicleDto> VehicleDtos = VehicleModel.loadAllItems();
 
             for (VehicleDto dto : VehicleDtos) {
                 obList.add(dto.getVehicle_no());

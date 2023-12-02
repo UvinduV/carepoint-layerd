@@ -230,19 +230,22 @@ public class registerStatus {
 
                 if (isSaved) {
                     loadOwnerId();
-                    new Alert(Alert.AlertType.CONFIRMATION, "customer saved sucessfully!").show();
-                    clearFields();
-                        ////////
-                    String email = "uvindu7070@gmail.com";
+                   // new Alert(Alert.AlertType.CONFIRMATION, "customer saved sucessfully!").show();
+
+                    //////////
+                    String email = address;
+                    System.out.println(email);
 
                     EmailSender mail = new EmailSender();
-                    mail.setMsg("Successfully! " + txtName.getText() + "Your Vehicle sevice is completed ! .");
+                    mail.setMsg("Hello " + txtName.getText() + ", \n Your successfully registed in carepoint family ! ");
                     mail.setTo(email);
                     mail.setSubject("Subject");
 
                     Thread thread = new Thread(mail);
                     thread.start();
                     ///////
+                    new Alert(Alert.AlertType.CONFIRMATION, "customer saved sucessfully!").show();
+                    clearFields();
                 }
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -266,12 +269,7 @@ public class registerStatus {
             new Alert(Alert.AlertType.ERROR, "invalid name").show();
             return false;
         }
-        String address = txtAddress.getText();
-        boolean matches2 = Pattern.compile("[A-Z][a-z]{3,}").matcher(address).matches();
-        if (!matches2) {
-            new Alert(Alert.AlertType.ERROR, "invalid address").show();
-            return false;
-        }
+
         String tel = txtTel.getText();
         boolean matches3 = Pattern.compile("[\\d]{10}").matcher(tel).matches();
         if(!matches3) {

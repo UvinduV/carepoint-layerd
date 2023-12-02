@@ -112,7 +112,6 @@ public class dashboardFormController {
 
     public void btnAppointPane(MouseEvent mouseEvent) throws IOException {
         rootHome.getChildren().clear();
-        rootHome.getChildren().add(FXMLLoader.load(getClass().getResource("/view/serviceAppointFrom")));
-
+        rootHome.getChildren().add(FXMLLoader.load(getClass().getResource("/view/serviceAppoint_form.fxml")));
     }
 }
