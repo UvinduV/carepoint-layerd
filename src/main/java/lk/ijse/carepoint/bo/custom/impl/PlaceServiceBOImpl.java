@@ -1,6 +1,7 @@
 package lk.ijse.carepoint.bo.custom.impl;
 
 import lk.ijse.carepoint.bo.custom.PlaceServiceBO;
+import lk.ijse.carepoint.dao.DAOFactory;
 import lk.ijse.carepoint.dao.SqlUtil;
 import lk.ijse.carepoint.dao.custom.*;
 import lk.ijse.carepoint.dao.custom.impl.AppointmentDAOImpl;
@@ -20,10 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlaceServiceBOImpl implements PlaceServiceBO {
-    private ServiceDetailDAO serviceDetailDAO=new ServiceDetailDAOImpl();
-    private AppointmentDAO appointmentDAO=new AppointmentDAOImpl();
-    private ItemDAO itemDAO=new ItemDAOImpl();
-    private CustomerDAO customerDAO=new CustomerDAOImpl();
+    private ServiceDetailDAO serviceDetailDAO= (ServiceDetailDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.SERVICE_DETAIL);
+    private AppointmentDAO appointmentDAO= (AppointmentDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.APPOINT);
+    private ItemDAO itemDAO= (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
+    private CustomerDAO customerDAO= (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
     @Override
     public boolean placeOrder(ServiceDetailsDto placeOrderDto) throws SQLException, ClassNotFoundException {
         String appointId = placeOrderDto.getAppointId();

@@ -1,6 +1,7 @@
 package lk.ijse.carepoint.bo.custom.impl;
 
 import lk.ijse.carepoint.bo.custom.ServiceAppointBO;
+import lk.ijse.carepoint.dao.DAOFactory;
 import lk.ijse.carepoint.dao.SqlUtil;
 import lk.ijse.carepoint.dao.custom.*;
 import lk.ijse.carepoint.dao.custom.impl.*;
@@ -13,11 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceAppointBOImpl implements ServiceAppointBO {
-    private CustomerDAO customerDAO=new CustomerDAOImpl();
-    private VehicleDAO vehicleDAO=new VehicleDAOImpl();
-    private SheduleDAO sheduleDAO =new SheduleDAOImpl();
-    private PackageDAO packageDAO=new PackageDAOImpl();
-    private AppointmentDAO appointmentDAO=new AppointmentDAOImpl();
+    private CustomerDAO customerDAO=(CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
+    private VehicleDAO vehicleDAO=(VehicleDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.VEHICLE);
+    private SheduleDAO sheduleDAO = (SheduleDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.SHEDULE);
+    private PackageDAO packageDAO= (PackageDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.PACKAGE);
+    private AppointmentDAO appointmentDAO=(AppointmentDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.APPOINT);
     @Override
     public CustomerDto searchCustomer(String newValue) throws SQLException, ClassNotFoundException {
         return customerDAO.search(newValue);

@@ -1,6 +1,7 @@
 package lk.ijse.carepoint.bo.custom.impl;
 
 import lk.ijse.carepoint.bo.custom.SheduleBO;
+import lk.ijse.carepoint.dao.DAOFactory;
 import lk.ijse.carepoint.dao.SqlUtil;
 import lk.ijse.carepoint.dao.custom.SheduleDAO;
 import lk.ijse.carepoint.dao.custom.impl.SheduleDAOImpl;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SheduleBOImpl implements SheduleBO {
-    private SheduleDAO sheduleDAO=new SheduleDAOImpl();
+    private SheduleDAO sheduleDAO=(SheduleDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.SHEDULE);
     @Override
     public String generateSheduelID() throws SQLException, ClassNotFoundException {
         return sheduleDAO.generateNewID();

@@ -1,6 +1,7 @@
 package lk.ijse.carepoint.bo.custom.impl;
 
 import lk.ijse.carepoint.bo.custom.ItemBO;
+import lk.ijse.carepoint.dao.DAOFactory;
 import lk.ijse.carepoint.dao.SqlUtil;
 import lk.ijse.carepoint.dao.custom.ItemDAO;
 import lk.ijse.carepoint.dao.custom.impl.ItemDAOImpl;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemBOImpl implements ItemBO {
-    private ItemDAO itemDAO=new ItemDAOImpl();
+    private ItemDAO itemDAO= (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
     @Override
     public List<ItemDto> getAllItem() throws SQLException, ClassNotFoundException {
         return itemDAO.getAll();

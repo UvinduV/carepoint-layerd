@@ -1,6 +1,7 @@
 package lk.ijse.carepoint.bo.custom.impl;
 
 import lk.ijse.carepoint.bo.custom.RegisterStatusBO;
+import lk.ijse.carepoint.dao.DAOFactory;
 import lk.ijse.carepoint.dao.SqlUtil;
 import lk.ijse.carepoint.dao.custom.CustomerDAO;
 import lk.ijse.carepoint.dao.custom.VehicleDAO;
@@ -15,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterStatusBOImpl implements RegisterStatusBO {
-    private CustomerDAO customerDAO =new CustomerDAOImpl();
-    private VehicleDAO vehicleDAO = new VehicleDAOImpl();
+    private CustomerDAO customerDAO =(CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
+    private VehicleDAO vehicleDAO = (VehicleDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.VEHICLE);
     @Override
     public  String generateCustID() throws SQLException, ClassNotFoundException {
         return customerDAO.generateNewID();
