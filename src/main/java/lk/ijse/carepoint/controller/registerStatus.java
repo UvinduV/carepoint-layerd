@@ -92,6 +92,8 @@ public class registerStatus {
            lblCustId.setText(orderId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -195,7 +197,7 @@ public class registerStatus {
                 obList.add(dto.getCust_id());
             }
             cmbOwnerId.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -241,7 +243,7 @@ public class registerStatus {
                     new Alert(Alert.AlertType.CONFIRMATION, "customer saved sucessfully!").show();
                     clearFields();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
         }

@@ -1,5 +1,6 @@
 package lk.ijse.carepoint.dao.custom.impl;
 
+import lk.ijse.carepoint.dao.SqlUtil;
 import lk.ijse.carepoint.dao.custom.CustomerDAO;
 import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.CustomerDto;
@@ -13,13 +14,9 @@ import java.util.List;
 
 public class CustomerDAOImpl implements CustomerDAO {
     @Override
-    public  String generateNextOrderId() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public  String generateNextOrderId() throws SQLException, ClassNotFoundException {
 
-        String sql = "SELECT cust_id FROM customer ORDER BY cust_id DESC LIMIT 1";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet = SqlUtil.test("SELECT cust_id FROM customer ORDER BY cust_id DESC LIMIT 1");
         if(resultSet.next()) {
             return splitCustId(resultSet.getString(1));
         }
@@ -42,15 +39,12 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public  List<CustomerDto> loadAllItems() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "SELECT * FROM customer";
-        PreparedStatement pstm = connection.prepareStatement(sql);
+    public  List<CustomerDto> loadAllItems() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet= SqlUtil.test("SELECT * FROM customer");
 
         List<CustomerDto> itemList = new ArrayList<>();
 
-        ResultSet resultSet = pstm.executeQuery();
+        //ResultSet resultSet = pstm.executeQuery();
         while (resultSet.next()) {
             itemList.add(new CustomerDto(
                     resultSet.getString(1),
@@ -64,15 +58,9 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public  CustomerDto searchCustomerID(String Tel) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection ();
-
-        String sql = "SELECT * FROM customer WHERE tel = ?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, Tel);
-
-        ResultSet resultSet = pstm.executeQuery();
-
+    public  CustomerDto searchCustomerID(String Tel) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet=SqlUtil.test("SELECT * FROM customer WHERE tel = ?",Tel);
+        resultSet.next();
         CustomerDto dto = null;
 
         if(resultSet.next()) {
@@ -87,15 +75,16 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public CustomerDto searchCustomer(String custId) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection ();
+    public CustomerDto searchCustomer(String custId) throws SQLException, ClassNotFoundException {
+        /*Connection connection = DbConnection.getInstance().getConnection ();
 
         String sql = "SELECT * FROM customer WHERE cust_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, custId);
+        pstm.setString(1, custId);*/
 
-        ResultSet resultSet = pstm.executeQuery();
-
+       // ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet=SqlUtil.test("SELECT * FROM customer WHERE cust_id = ?",custId);
+        resultSet.next();
         CustomerDto dto = null;
 
         if(resultSet.next()) {
@@ -110,8 +99,8 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean saveCustomer(CustomerDto dto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public boolean saveCustomer(CustomerDto dto) throws SQLException, ClassNotFoundException {
+        /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO customer VALUES(?, ?, ?, ?)";
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -121,7 +110,8 @@ public class CustomerDAOImpl implements CustomerDAO {
         pstm.setString(3, dto.getAddress());
         pstm.setString(4, dto.getTel());
 
-        boolean isSaved = pstm.executeUpdate() > 0;
+        boolean isSaved = pstm.executeUpdate() > 0;*/
+        boolean isSaved=SqlUtil.test("INSERT INTO customer VALUES(?, ?, ?, ?)",dto);
 
         return isSaved;
     }

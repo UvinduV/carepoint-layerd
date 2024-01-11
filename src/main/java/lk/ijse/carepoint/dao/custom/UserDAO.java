@@ -5,7 +5,7 @@ import lk.ijse.carepoint.dto.UserDto;
 import java.sql.SQLException;
 
 public interface UserDAO {
-    boolean saveUser(UserDto dto) throws SQLException ;
+    boolean saveUser(UserDto dto) throws SQLException, ClassNotFoundException;
 
-    UserDto getUser(String un, String pw) throws SQLException ;
+    UserDto getUser(String un, String pw) throws SQLException, ClassNotFoundException;
 }

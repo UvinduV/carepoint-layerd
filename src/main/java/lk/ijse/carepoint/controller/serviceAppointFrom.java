@@ -220,6 +220,8 @@ public class serviceAppointFrom {
                         }
                     } catch (SQLException e) {
                         new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
                     }
                     String email = lblcustEmail.getText();
 
@@ -320,6 +322,8 @@ public class serviceAppointFrom {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 

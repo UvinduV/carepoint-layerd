@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface CustomerDAO {
-    String generateNextOrderId() throws SQLException;
+    String generateNextOrderId() throws SQLException, ClassNotFoundException;
     String splitCustId(String currentCustId) ;
 
-    List<CustomerDto> loadAllItems() throws SQLException;
-    CustomerDto searchCustomerID(String Tel) throws SQLException ;
+    List<CustomerDto> loadAllItems() throws SQLException, ClassNotFoundException;
+    CustomerDto searchCustomerID(String Tel) throws SQLException, ClassNotFoundException;
 
-    CustomerDto searchCustomer(String custId) throws SQLException ;
+    CustomerDto searchCustomer(String custId) throws SQLException, ClassNotFoundException;
 
-    boolean saveCustomer(CustomerDto dto) throws SQLException ;
+    boolean saveCustomer(CustomerDto dto) throws SQLException, ClassNotFoundException;
 }

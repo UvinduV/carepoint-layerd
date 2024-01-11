@@ -211,7 +211,7 @@ public class placeServiceFormController {
             } else {
                // new Alert(Alert.AlertType.INFORMATION, "customer not found").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
@@ -361,6 +361,8 @@ public class placeServiceFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         String email = lblcustEmail.getText();
 

@@ -57,6 +57,8 @@ public class loginFormController {
             }
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
 
