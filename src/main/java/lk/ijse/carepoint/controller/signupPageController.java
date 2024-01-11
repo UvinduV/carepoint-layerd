@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.carepoint.bo.BOFactory;
 import lk.ijse.carepoint.bo.custom.impl.SignUpBOImpl;
 import lk.ijse.carepoint.bo.custom.SignUpBO;
 import lk.ijse.carepoint.dto.UserDto;
@@ -48,7 +49,7 @@ public class signupPageController {
     private JFXTextField txtUsername;
 
    // private UserDAO userDAO=new UserDAOImpl();
-    SignUpBO signUpBO=new SignUpBOImpl();
+    SignUpBO signUpBO= (SignUpBO) BOFactory.getBoFactory().getBo(BOFactory.BOTypes.SIGNUP);
     public void btnSignupOnAction(ActionEvent actionEvent) {
         String username = txtUsername.getText();
         String password = txtPassword.getText();

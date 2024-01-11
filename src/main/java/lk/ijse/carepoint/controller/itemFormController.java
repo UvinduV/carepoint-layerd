@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carepoint.bo.BOFactory;
 import lk.ijse.carepoint.bo.custom.ItemBO;
 import lk.ijse.carepoint.bo.custom.impl.ItemBOImpl;
 import lk.ijse.carepoint.dto.ItemDto;
@@ -68,7 +69,7 @@ public class itemFormController {
     private TextField txtUnitPrice;
 
    // private ItemDAO itemDAO=new ItemDAOImpl();
-    private ItemBO itemBO=new ItemBOImpl();
+    private ItemBO itemBO= (ItemBO) BOFactory.getBoFactory().getBo(BOFactory.BOTypes.ITEM);
 
     public void initialize() {
         setCellValueFactory();

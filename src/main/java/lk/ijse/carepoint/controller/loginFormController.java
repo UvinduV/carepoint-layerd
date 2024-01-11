@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.carepoint.bo.BOFactory;
 import lk.ijse.carepoint.bo.custom.impl.LoginBOImpl;
 import lk.ijse.carepoint.bo.custom.LoginBO;
 import lk.ijse.carepoint.dto.UserDto;
@@ -35,7 +36,7 @@ public class loginFormController {
     @FXML
     private JFXTextField txtUsername;
     //private UserDAO userDAO =new UserDAOImpl();
-    private LoginBO loginBO=new LoginBOImpl();
+    private LoginBO loginBO= (LoginBO) BOFactory.getBoFactory().getBo(BOFactory.BOTypes.LOGIN);
     public void btnSignInOnAction(ActionEvent event) {
         String username = txtUsername.getText();
         String password = txtPassword.getText();

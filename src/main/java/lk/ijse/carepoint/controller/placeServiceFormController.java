@@ -9,6 +9,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carepoint.bo.BOFactory;
 import lk.ijse.carepoint.bo.custom.PlaceServiceBO;
 import lk.ijse.carepoint.bo.custom.impl.PlaceServiceBOImpl;
 import lk.ijse.carepoint.dao.custom.*;
@@ -119,7 +120,7 @@ public class placeServiceFormController {
     //private CustomerDAO customerDAO=new CustomerDAOImpl();
     //private ItemDAO itemDAO=new ItemDAOImpl();
     //private AppointmentDAO appointmentDAO=new AppointmentDAOImpl();
-    private PlaceServiceBO placeServiceBO=new PlaceServiceBOImpl();
+    private PlaceServiceBO placeServiceBO= (PlaceServiceBO) BOFactory.getBoFactory().getBo(BOFactory.BOTypes.PLACE_SERVICE);
 
     private ObservableList<cartTm> obList = FXCollections.observableArrayList();
 

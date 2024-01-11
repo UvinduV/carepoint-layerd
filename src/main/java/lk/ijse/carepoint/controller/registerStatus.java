@@ -13,6 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carepoint.bo.BOFactory;
 import lk.ijse.carepoint.bo.custom.RegisterStatusBO;
 import lk.ijse.carepoint.bo.custom.impl.RegisterStatusBOImpl;
 import lk.ijse.carepoint.dto.CustomerDto;
@@ -74,7 +75,7 @@ public class registerStatus {
 
     //private CustomerDAO customerDAO =new CustomerDAOImpl();
     //private VehicleDAO vehicleDAO = new VehicleDAOImpl();
-    private RegisterStatusBO registerStatusBO=new RegisterStatusBOImpl();
+    private RegisterStatusBO registerStatusBO= (RegisterStatusBO) BOFactory.getBoFactory().getBo(BOFactory.BOTypes.REGISTER);
 
     //private String[] carType = {"CAR","VAN","SUV","BUS"};
 

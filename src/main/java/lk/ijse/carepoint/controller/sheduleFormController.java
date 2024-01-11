@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carepoint.bo.BOFactory;
 import lk.ijse.carepoint.bo.custom.SheduleBO;
 import lk.ijse.carepoint.bo.custom.impl.SheduleBOImpl;
 import lk.ijse.carepoint.dto.SheduleDto;
@@ -110,7 +111,7 @@ public class sheduleFormController {
     private TableView<scheduleTm> tblOrderCart;
 
     //private SheduleDAO sheduleDAO=new SheduleDAOImpl();
-    private SheduleBO sheduleBO=new SheduleBOImpl();
+    private SheduleBO sheduleBO= (SheduleBO) BOFactory.getBoFactory().getBo(BOFactory.BOTypes.SHEDULE);
     private ObservableList<scheduleTm> obListShedule = FXCollections.observableArrayList();
     public void initialize() {
         setCellValueFactory();

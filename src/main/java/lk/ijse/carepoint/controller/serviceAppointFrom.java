@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carepoint.bo.BOFactory;
 import lk.ijse.carepoint.bo.custom.ServiceAppointBO;
 import lk.ijse.carepoint.bo.custom.impl.ServiceAppointBOImpl;
 import lk.ijse.carepoint.dao.custom.*;
@@ -73,7 +74,7 @@ public class serviceAppointFrom {
     //private SheduleDAO sheduleDAO =new SheduleDAOImpl();
     //private PackageDAO packageDAO=new PackageDAOImpl();
     //private AppointmentDAO appointmentDAO=new AppointmentDAOImpl();
-    private ServiceAppointBO serviceAppointBO=new ServiceAppointBOImpl();
+    private ServiceAppointBO serviceAppointBO= (ServiceAppointBO) BOFactory.getBoFactory().getBo(BOFactory.BOTypes.APPOINMENT);
 
     public void initialize() {
         loadToVehicleID();
