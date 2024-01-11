@@ -206,7 +206,7 @@ public class placeServiceFormController {
     private String getCustName(String id) {
         String custId = id;
         try {
-            CustomerDto customerDto = customerDAO.searchCustomer(custId);
+            CustomerDto customerDto = customerDAO.search(custId);
 //            System.out.println(customerDto);
             if (customerDto != null) {
                 lblCustName.setText(customerDto.getName());
@@ -223,7 +223,7 @@ public class placeServiceFormController {
     private void loadItemCodes() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<ItemDto> itemDtos = itemDAO.loadAllItems();
+            List<ItemDto> itemDtos = itemDAO.getAll();
 
             for (ItemDto dto : itemDtos) {
                 obList.add(dto.getCode());
@@ -307,7 +307,7 @@ public class placeServiceFormController {
 
         txtQty.requestFocus();
         try {
-            ItemDto dto = itemDAO.searchItem(code);
+            ItemDto dto = itemDAO.search(code);
             lblDesc.setText(dto.getDescription());
             lblUnitPrice.setText(String.valueOf(dto.getUnitPrice()));
             lblQtyOnHand.setText(String.valueOf(dto.getQtyOnHand()));
@@ -354,7 +354,7 @@ public class placeServiceFormController {
         ///////
         //CustomerModel.searchCustomer(cust_Id);
         try {
-            CustomerDto customerDto = customerDAO.searchCustomer(cust_Id);
+            CustomerDto customerDto = customerDAO.search(cust_Id);
             //            System.out.println(customerDto);
             if (customerDto != null) {
                 lblcustEmail.setText(customerDto.getAddress());

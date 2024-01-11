@@ -213,7 +213,7 @@ public class serviceAppointFrom {
                     ///////
 
                     try {
-                        CustomerDto customerDto = customerDAO.searchCustomer(cust_Id);
+                        CustomerDto customerDto = customerDAO.search(cust_Id);
                         //            System.out.println(customerDto);
                         if (customerDto != null) {
                             lblcustEmail.setText(customerDto.getAddress());

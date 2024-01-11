@@ -92,7 +92,7 @@ public class itemFormController {
     private void loadAllItems() {
         ObservableList<itemTm> obList = FXCollections.observableArrayList();
         try {
-            List<ItemDto> dtoList = itemDAO.loadAllItems();
+            List<ItemDto> dtoList = itemDAO.getAll();
 
             for (ItemDto dto : dtoList) {
                 obList.add(new itemTm(
@@ -133,7 +133,7 @@ public class itemFormController {
                 int focusedIndex = tblItem.getSelectionModel().getSelectedIndex();
                 String code = tblItem.getItems().get(focusedIndex).getCode();
                 try {
-                    boolean isDeleted = itemDAO.deleteItem(code);
+                    boolean isDeleted = itemDAO.delete(code);
                     if (isDeleted) {
                         tblItem.getItems().remove(focusedIndex);
                         tblItem.refresh();
@@ -157,7 +157,7 @@ public class itemFormController {
         String code = txtCode.getText();
 
         try {
-            ItemDto dto = itemDAO.searchItem(code);
+            ItemDto dto = itemDAO.search(code);
             if (dto != null) {
                 setFields(dto);
             } else {
@@ -181,7 +181,7 @@ public class itemFormController {
 
 //        var model = new ItemModel();
         try {
-            boolean isSaved = itemDAO.saveItem(dto);
+            boolean isSaved = itemDAO.save(dto);
             if (isSaved) {
                 loadAllItems();
                 tblItem.refresh();
@@ -208,7 +208,7 @@ public class itemFormController {
 
 //        var model = new ItemModel();
         try {
-            boolean isUpdated = itemDAO.updateItem(new ItemDto(code, description, unitPrice, qtyOnHand));
+            boolean isUpdated = itemDAO.update(new ItemDto(code, description, unitPrice, qtyOnHand));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "item updated").show();
             }

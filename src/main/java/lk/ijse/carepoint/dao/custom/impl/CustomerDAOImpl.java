@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CustomerDAOImpl implements CustomerDAO {
     @Override
-    public  String generateNextOrderId() throws SQLException, ClassNotFoundException {
+    public  String generateNewID() throws SQLException, ClassNotFoundException {
 
         ResultSet resultSet = SqlUtil.test("SELECT cust_id FROM customer ORDER BY cust_id DESC LIMIT 1");
         if(resultSet.next()) {
@@ -39,7 +39,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public  List<CustomerDto> loadAllItems() throws SQLException, ClassNotFoundException {
+    public  List<CustomerDto>  getAll() throws SQLException, ClassNotFoundException {
         ResultSet resultSet= SqlUtil.test("SELECT * FROM customer");
 
         List<CustomerDto> itemList = new ArrayList<>();
@@ -75,7 +75,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public CustomerDto searchCustomer(String custId) throws SQLException, ClassNotFoundException {
+    public CustomerDto search(String newValue) throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection ();
 
         String sql = "SELECT * FROM customer WHERE cust_id = ?";
@@ -83,7 +83,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         pstm.setString(1, custId);*/
 
        // ResultSet resultSet = pstm.executeQuery();
-        ResultSet resultSet=SqlUtil.test("SELECT * FROM customer WHERE cust_id = ?",custId);
+        ResultSet resultSet=SqlUtil.test("SELECT * FROM customer WHERE cust_id = ?",newValue);
         resultSet.next();
         CustomerDto dto = null;
 
@@ -99,7 +99,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean saveCustomer(CustomerDto dto) throws SQLException, ClassNotFoundException {
+    public boolean save(CustomerDto dto) throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO customer VALUES(?, ?, ?, ?)";
@@ -114,5 +114,16 @@ public class CustomerDAOImpl implements CustomerDAO {
         boolean isSaved=SqlUtil.test("INSERT INTO customer VALUES(?, ?, ?, ?)",dto.getCust_id(),dto.getName(),dto.getAddress(),dto.getTel());
 
         return isSaved;
+    }
+///////////////////
+
+    @Override
+    public boolean update(CustomerDto dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
     }
 }

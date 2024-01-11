@@ -88,7 +88,7 @@ public class registerStatus {
     private void generateNextCustID() {
 
         try {
-           String orderId = customerDAO.generateNextOrderId();
+           String orderId = customerDAO.generateNewID();
            lblCustId.setText(orderId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -193,7 +193,7 @@ public class registerStatus {
     private void loadOwnerId() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<CustomerDto> CustomerDtos = customerDAO.loadAllItems();
+            List<CustomerDto> CustomerDtos = customerDAO.getAll();
 
             for (CustomerDto dto : CustomerDtos) {
                 obList.add(dto.getCust_id());
@@ -224,7 +224,7 @@ public class registerStatus {
             var dto = new CustomerDto(cust_id,name,address,tel);
 
             try {
-                boolean isSaved = customerDAO.saveCustomer(dto);
+                boolean isSaved = customerDAO.save(dto);
 
                 if (isSaved) {
                     loadOwnerId();
