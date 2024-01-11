@@ -12,6 +12,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.carepoint.bo.LoginBOImpl;
+import lk.ijse.carepoint.bo.custom.LoginBO;
 import lk.ijse.carepoint.dto.UserDto;
 import lk.ijse.carepoint.dao.custom.UserDAO;
 import lk.ijse.carepoint.dao.custom.impl.UserDAOImpl;
@@ -34,7 +36,8 @@ public class loginFormController {
 
     @FXML
     private JFXTextField txtUsername;
-    private UserDAO userDAO =new UserDAOImpl();
+    //private UserDAO userDAO =new UserDAOImpl();
+    private LoginBO loginBO=new LoginBOImpl();
     public void btnSignInOnAction(ActionEvent event) {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
@@ -45,7 +48,7 @@ public class loginFormController {
         }
         //UserDto userDto = null;
         try {
-            UserDto userDto = userDAO.getUser(username, password);
+            UserDto userDto = loginBO.getUser(username, password);
             if (userDto != null) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Login Successful").show();
                 System.out.println("Login Successful");

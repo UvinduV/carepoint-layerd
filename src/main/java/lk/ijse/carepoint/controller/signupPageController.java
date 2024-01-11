@@ -12,6 +12,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.carepoint.bo.SignUpBOImpl;
+import lk.ijse.carepoint.bo.custom.SignUpBO;
 import lk.ijse.carepoint.dto.UserDto;
 import lk.ijse.carepoint.dao.custom.UserDAO;
 import lk.ijse.carepoint.dao.custom.impl.UserDAOImpl;
@@ -47,7 +49,8 @@ public class signupPageController {
     @FXML
     private JFXTextField txtUsername;
 
-    private UserDAO userDAO=new UserDAOImpl();
+   // private UserDAO userDAO=new UserDAOImpl();
+    SignUpBO signUpBO=new SignUpBOImpl();
     public void btnSignupOnAction(ActionEvent actionEvent) {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
@@ -71,7 +74,7 @@ public class signupPageController {
 
 
         try {
-           boolean isSaved = userDAO.save(dto);
+           boolean isSaved = signUpBO.saveUser(dto);
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
                 //clearFields();
