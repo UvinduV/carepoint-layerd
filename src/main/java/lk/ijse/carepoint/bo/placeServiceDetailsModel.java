@@ -14,7 +14,7 @@ public class placeServiceDetailsModel {
     private ServiceDetailDAO serviceDetailDAO=new ServiceDetailDAOImpl();
     private AppointmentDAO appointmentDAO=new AppointmentDAOImpl();
     private ItemDAO itemDAO=new ItemDAOImpl();
-    public boolean placeOrder(PlaceServiceDetailsDto placeOrderDto) throws SQLException {
+    public boolean placeOrder(PlaceServiceDetailsDto placeOrderDto) throws SQLException, ClassNotFoundException {
         String appointId = placeOrderDto.getAppointId();
         
 

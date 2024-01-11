@@ -100,7 +100,7 @@ public class serviceAppointFrom {
             lblDescription.setText(packageDto.getType());
             lblUnitPrice.setText(String.valueOf(packageDto.getAmount()));
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -113,7 +113,7 @@ public class serviceAppointFrom {
                 obList.add(dto.getId());
             }
             cmbPackageCode.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -302,6 +302,8 @@ public class serviceAppointFrom {
             }
             cmbVehicleId.setItems(obList);
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

@@ -227,7 +227,7 @@ public class placeServiceFormController {
                 obList.add(dto.getCode());
             }
             cmbItemCode.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -309,7 +309,7 @@ public class placeServiceFormController {
             lblDesc.setText(dto.getDescription());
             lblUnitPrice.setText(String.valueOf(dto.getUnitPrice()));
             lblQtyOnHand.setText(String.valueOf(dto.getQtyOnHand()));
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -333,7 +333,7 @@ public class placeServiceFormController {
         boolean isSuccess = false;
         try {
             isSuccess = placeServiceDetailsModel.placeOrder(placeOrderDto);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 

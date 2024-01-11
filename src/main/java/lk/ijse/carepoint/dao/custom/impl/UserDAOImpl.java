@@ -25,7 +25,7 @@ public class UserDAOImpl implements UserDAO {
         pstm.setString(5, dto.getPossition());
 
         boolean isSaved = pstm.executeUpdate() > 0;*/
-        boolean isSaved= SqlUtil.test("INSERT INTO user VALUES(?, ?, ?, ?, ?)",dto);
+        boolean isSaved= SqlUtil.test("INSERT INTO user VALUES(?, ?, ?, ?, ?)",dto.getUsername(),dto.getPassword(),dto.getFirst_name(),dto.getLast_Name(),dto.getPossition());
 
         return isSaved;
     }

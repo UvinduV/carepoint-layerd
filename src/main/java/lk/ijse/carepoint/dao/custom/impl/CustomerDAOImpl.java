@@ -111,7 +111,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         pstm.setString(4, dto.getTel());
 
         boolean isSaved = pstm.executeUpdate() > 0;*/
-        boolean isSaved=SqlUtil.test("INSERT INTO customer VALUES(?, ?, ?, ?)",dto);
+        boolean isSaved=SqlUtil.test("INSERT INTO customer VALUES(?, ?, ?, ?)",dto.getCust_id(),dto.getName(),dto.getAddress(),dto.getTel());
 
         return isSaved;
     }

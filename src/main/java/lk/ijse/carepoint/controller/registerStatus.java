@@ -144,6 +144,8 @@ public class registerStatus {
                 }
             } catch (SQLException | IOException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
         }
 
