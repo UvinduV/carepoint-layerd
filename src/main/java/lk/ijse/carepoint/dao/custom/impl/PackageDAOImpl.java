@@ -1,9 +1,8 @@
-package lk.ijse.carepoint.model;
+package lk.ijse.carepoint.dao.custom.impl;
 
+import lk.ijse.carepoint.dao.custom.PackageDAO;
 import lk.ijse.carepoint.db.DbConnection;
-import lk.ijse.carepoint.dto.CustomerDto;
 import lk.ijse.carepoint.dto.PackageDto;
-import lk.ijse.carepoint.dto.VehicleDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,8 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PackageModel {
-    public static List<PackageDto> loadAllItems() throws SQLException {
+public class PackageDAOImpl implements PackageDAO {
+    public List<PackageDto> loadAllItems() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM package";
@@ -34,7 +33,7 @@ public class PackageModel {
         return itemList;
     }
 
-    public static PackageDto searchPackage(String Pid) throws SQLException {
+    public PackageDto searchPackage(String Pid) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection ();
 
         String sql = "SELECT * FROM package WHERE id = ?";

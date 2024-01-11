@@ -15,10 +15,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.carepoint.dto.CustomerDto;
 import lk.ijse.carepoint.dto.VehicleDto;
-import lk.ijse.carepoint.model.CustomerDAO;
-import lk.ijse.carepoint.model.CustomerDAOImpl;
-import lk.ijse.carepoint.model.VehicleDAO;
-import lk.ijse.carepoint.model.VehicleDAOImpl;
+import lk.ijse.carepoint.dao.custom.CustomerDAO;
+import lk.ijse.carepoint.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.carepoint.dao.custom.VehicleDAO;
+import lk.ijse.carepoint.dao.custom.impl.VehicleDAOImpl;
 
 //import javax.mail.internet.MimeMessage;
 import java.io.IOException;

@@ -1,10 +1,8 @@
-package lk.ijse.carepoint.model;
+package lk.ijse.carepoint.dao.custom;
 
-import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.SheduleDto;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface SheduleDAO {

@@ -8,10 +8,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carepoint.dao.custom.*;
+import lk.ijse.carepoint.dao.custom.impl.*;
 import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.*;
 import lk.ijse.carepoint.dto.tm.appointmentTm;
-import lk.ijse.carepoint.model.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -68,7 +69,8 @@ public class serviceAppointFrom {
     private CustomerDAO customerDAO=new CustomerDAOImpl();
     private VehicleDAO vehicleDAO=new VehicleDAOImpl();
     private SheduleDAO sheduleDAO =new SheduleDAOImpl();
-
+    private PackageDAO packageDAO=new PackageDAOImpl();
+    private AppointmentDAO appointmentDAO=new AppointmentDAOImpl();
 
     public void initialize() {
         loadToVehicleID();
@@ -78,7 +80,7 @@ public class serviceAppointFrom {
     }
     private void generateNextAppointId() {
         try {
-            String orderId = ServiceAppointModel.generateNextAppointId();
+            String orderId = appointmentDAO.generateNextAppointId();
             lblAppointId.setText(orderId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -94,7 +96,7 @@ public class serviceAppointFrom {
         String id =  cmbPackageCode.getValue();
 //        CustomerModel customerModel = new CustomerModel();
         try {
-            PackageDto packageDto = PackageModel.searchPackage(id);
+            PackageDto packageDto = packageDAO.searchPackage(id);
             lblDescription.setText(packageDto.getType());
             lblUnitPrice.setText(String.valueOf(packageDto.getAmount()));
 
@@ -105,7 +107,7 @@ public class serviceAppointFrom {
     private void loadToPackageID() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<PackageDto> PackageDtos = PackageModel.loadAllItems();
+            List<PackageDto> PackageDtos = packageDAO.loadAllItems();
 
             for (PackageDto dto : PackageDtos) {
                 obList.add(dto.getId());
@@ -197,7 +199,7 @@ public class serviceAppointFrom {
             var dto = new serviceAppointDto(appoint_Id, cust_Id, vehicle_No, shedule_Id, package_Id,paymentId, date, time, amount);
 
             try {
-                boolean isSaved = ServiceAppointModel.saveAppoint(dto);
+                boolean isSaved = appointmentDAO.saveAppoint(dto);
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Appoint saved sucessfully!").show();

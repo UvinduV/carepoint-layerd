@@ -1,13 +1,8 @@
-package lk.ijse.carepoint.model;
+package lk.ijse.carepoint.dao.custom;
 
-import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.CustomerDto;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface CustomerDAO {

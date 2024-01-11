@@ -11,8 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.carepoint.dto.SheduleDto;
 import lk.ijse.carepoint.dto.tm.scheduleTm;
-import lk.ijse.carepoint.model.SheduleDAO;
-import lk.ijse.carepoint.model.SheduleDAOImpl;
+import lk.ijse.carepoint.dao.custom.SheduleDAO;
+import lk.ijse.carepoint.dao.custom.impl.SheduleDAOImpl;
 
 import java.io.IOException;
 import java.sql.Date;

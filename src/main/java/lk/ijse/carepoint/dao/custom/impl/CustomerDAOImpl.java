@@ -1,5 +1,6 @@
-package lk.ijse.carepoint.model;
+package lk.ijse.carepoint.dao.custom.impl;
 
+import lk.ijse.carepoint.dao.custom.CustomerDAO;
 import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.CustomerDto;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDAOImpl implements CustomerDAO{
+public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public  String generateNextOrderId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();

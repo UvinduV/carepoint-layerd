@@ -1,7 +1,7 @@
-package lk.ijse.carepoint.model;
+package lk.ijse.carepoint.dao.custom.impl;
 
+import lk.ijse.carepoint.dao.custom.AppointmentDAO;
 import lk.ijse.carepoint.db.DbConnection;
-import lk.ijse.carepoint.dto.ItemDto;
 import lk.ijse.carepoint.dto.serviceAppointDto;
 
 import java.sql.Connection;
@@ -11,8 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceAppointModel {
-    public static String generateNextAppointId() throws SQLException {
+public class AppointmentDAOImpl implements AppointmentDAO {
+    @Override
+    public String generateNextAppointId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT appoint_id FROM appointment ORDER BY appoint_id DESC LIMIT 1";
@@ -24,8 +25,8 @@ public class ServiceAppointModel {
         }
         return splitAppointId(null);
     }
-
-    private static String splitAppointId(String currentAppointId) {
+    @Override
+    public String splitAppointId(String currentAppointId) {
         if(currentAppointId != null) {
             String[] split = currentAppointId.split("A0");
 
@@ -36,8 +37,8 @@ public class ServiceAppointModel {
             return "A001";
         }
     }
-
-    public static boolean saveAppoint(serviceAppointDto dto) throws SQLException {
+    @Override
+    public boolean saveAppoint(serviceAppointDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO appointment VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -57,7 +58,7 @@ public class ServiceAppointModel {
 
         return isSaved;
     }
-
+    @Override
     public List<serviceAppointDto> getAllAppointment() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -84,7 +85,7 @@ public class ServiceAppointModel {
         }
         return dtoList;
     }
-
+    @Override
     public serviceAppointDto searchAppointId(String appointId) throws SQLException {
 
         Connection connection = DbConnection.getInstance().getConnection();
@@ -112,7 +113,7 @@ public class ServiceAppointModel {
         }
         return dto;
     }
-
+    @Override
     public boolean deleteAppoint(String appointId) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

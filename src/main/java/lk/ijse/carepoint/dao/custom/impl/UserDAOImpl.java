@@ -1,5 +1,6 @@
-package lk.ijse.carepoint.model;
+package lk.ijse.carepoint.dao.custom.impl;
 
+import lk.ijse.carepoint.dao.custom.UserDAO;
 import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.UserDto;
 
@@ -8,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
     @Override
     public boolean saveUser(UserDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();

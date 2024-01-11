@@ -9,10 +9,14 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carepoint.bo.placeServiceDetailsModel;
+import lk.ijse.carepoint.dao.custom.*;
+import lk.ijse.carepoint.dao.custom.impl.AppointmentDAOImpl;
+import lk.ijse.carepoint.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.carepoint.dao.custom.impl.ItemDAOImpl;
 import lk.ijse.carepoint.dto.*;
 import lk.ijse.carepoint.dto.tm.appointmentTm;
 import lk.ijse.carepoint.dto.tm.cartTm;
-import lk.ijse.carepoint.model.*;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -109,12 +113,11 @@ public class placeServiceFormController {
 
     @FXML
     private AnchorPane waitingAppointPanel;
-    private ServiceAppointModel serviceAppointModel = new ServiceAppointModel();
 
-    private ServiceDetailsModel serviceDetailsModel=new ServiceDetailsModel();
-    private ItemModel itemModel= new ItemModel();
-
+    private lk.ijse.carepoint.bo.placeServiceDetailsModel placeServiceDetailsModel =new placeServiceDetailsModel();
     private CustomerDAO customerDAO=new CustomerDAOImpl();
+    private ItemDAO itemDAO=new ItemDAOImpl();
+    private AppointmentDAO appointmentDAO=new AppointmentDAOImpl();
 
     private ObservableList<cartTm> obList = FXCollections.observableArrayList();
 
@@ -135,12 +138,11 @@ public class placeServiceFormController {
     }
 
     private void loadAllAppointment() {
-        var model = new ServiceAppointModel();
 
         ObservableList<appointmentTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<serviceAppointDto> dtoList = model.getAllAppointment();
+            List<serviceAppointDto> dtoList = appointmentDAO.getAllAppointment();
 
             for (serviceAppointDto dto : dtoList) {
                 obList.add(
@@ -172,7 +174,7 @@ public class placeServiceFormController {
         System.out.println("appoint");
 
         try {
-            serviceAppointDto dto = serviceAppointModel.searchAppointId(appoint_Id);
+            serviceAppointDto dto = appointmentDAO.searchAppointId(appoint_Id);
             if (dto != null) {
                 txtApointId.setText(dto.getAppoint_Id());
                 lblCustID.setText(dto.getCust_Id());
@@ -219,7 +221,7 @@ public class placeServiceFormController {
     private void loadItemCodes() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<ItemDto> itemDtos = itemModel.loadAllItems();
+            List<ItemDto> itemDtos = itemDAO.loadAllItems();
 
             for (ItemDto dto : itemDtos) {
                 obList.add(dto.getCode());
@@ -303,7 +305,7 @@ public class placeServiceFormController {
 
         txtQty.requestFocus();
         try {
-            ItemDto dto = itemModel.searchItem(code);
+            ItemDto dto = itemDAO.searchItem(code);
             lblDesc.setText(dto.getDescription());
             lblUnitPrice.setText(String.valueOf(dto.getUnitPrice()));
             lblQtyOnHand.setText(String.valueOf(dto.getQtyOnHand()));
@@ -330,7 +332,7 @@ public class placeServiceFormController {
         var placeOrderDto = new PlaceServiceDetailsDto(appointId, date, customerId, cartTmList, totalprice);
         boolean isSuccess = false;
         try {
-            isSuccess = serviceDetailsModel.placeOrder(placeOrderDto);
+            isSuccess = placeServiceDetailsModel.placeOrder(placeOrderDto);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }

@@ -1,5 +1,6 @@
-package lk.ijse.carepoint.model;
+package lk.ijse.carepoint.dao.custom.impl;
 
+import lk.ijse.carepoint.dao.custom.SheduleDAO;
 import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.SheduleDto;
 
@@ -7,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SheduleDAOImpl implements SheduleDAO{
+public class SheduleDAOImpl implements SheduleDAO {
     @Override
     public boolean saveShedule(SheduleDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();

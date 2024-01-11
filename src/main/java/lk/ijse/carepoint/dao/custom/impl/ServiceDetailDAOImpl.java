@@ -1,7 +1,7 @@
-package lk.ijse.carepoint.model;
+package lk.ijse.carepoint.dao.custom.impl;
 
+import lk.ijse.carepoint.dao.custom.ServiceDetailDAO;
 import lk.ijse.carepoint.db.DbConnection;
-import lk.ijse.carepoint.dto.serviceRecodDto;
 import lk.ijse.carepoint.dto.tm.cartTm;
 
 import java.sql.Connection;
@@ -9,9 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServiceRecodModel {
+public class ServiceDetailDAOImpl implements ServiceDetailDAO {
 
-
+    @Override
     public boolean saveServiceDetails(String appointId, String totalprice, List<cartTm> cartTmList) throws SQLException {
         for(cartTm tm : cartTmList) {
            if( !saveServiceDetails( appointId,  totalprice,  tm)){
@@ -21,7 +21,8 @@ public class ServiceRecodModel {
         }
         return true;
     }
-    private  boolean saveServiceDetails(String appointId, String totalprice, cartTm tm) throws SQLException {
+    @Override
+    public boolean saveServiceDetails(String appointId, String totalprice, cartTm tm) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO service_details VALUES(?, ?, ?, ?)";

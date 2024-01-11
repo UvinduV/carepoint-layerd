@@ -1,5 +1,6 @@
-package lk.ijse.carepoint.model;
+package lk.ijse.carepoint.dao.custom.impl;
 
+import lk.ijse.carepoint.dao.custom.VehicleDAO;
 import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.VehicleDto;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehicleDAOImpl implements VehicleDAO{
+public class VehicleDAOImpl implements VehicleDAO {
 
     @Override
     public List<VehicleDto> loadAllItems() throws SQLException {

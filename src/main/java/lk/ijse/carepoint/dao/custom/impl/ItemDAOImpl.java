@@ -1,5 +1,6 @@
-package lk.ijse.carepoint.model;
+package lk.ijse.carepoint.dao.custom.impl;
 
+import lk.ijse.carepoint.dao.custom.ItemDAO;
 import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.ItemDto;
 import lk.ijse.carepoint.dto.tm.cartTm;
@@ -11,8 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemModel {
-    public static boolean updateItem(List<cartTm> cartTmList) throws SQLException {
+public class ItemDAOImpl implements ItemDAO {
+    @Override
+    public boolean updateItem(List<cartTm> cartTmList) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "UPDATE item SET description = ?, unit_price = ?, qty_on_hand = ? WHERE item_id = ?";
@@ -24,7 +26,7 @@ public class ItemModel {
         pstm.setString(4, ItemDto.getCode());*/
         return pstm.executeUpdate() > 0;
     }
-
+    @Override
     public boolean saveItem(ItemDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql = "INSERT INTO item VALUES(?, ?, ?, ?)";
@@ -37,7 +39,7 @@ public class ItemModel {
 
         return pstm.executeUpdate() > 0;
     }
-
+    @Override
     public ItemDto searchItem(String code) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql = "SELECT * FROM item WHERE item_id = ?";
@@ -59,7 +61,7 @@ public class ItemModel {
         }
         return dto;
     }
-
+    @Override
     public boolean updateItem(ItemDto itemDto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -73,7 +75,7 @@ public class ItemModel {
 
         return pstm.executeUpdate() > 0;
     }
-
+    @Override
     public List<ItemDto> loadAllItems() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -94,7 +96,7 @@ public class ItemModel {
 
         return itemList;
     }
-
+    @Override
     public boolean deleteItem(String code) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

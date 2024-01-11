@@ -13,8 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.carepoint.dto.UserDto;
-import lk.ijse.carepoint.model.UserDAO;
-import lk.ijse.carepoint.model.UserDAOImpl;
+import lk.ijse.carepoint.dao.custom.UserDAO;
+import lk.ijse.carepoint.dao.custom.impl.UserDAOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
