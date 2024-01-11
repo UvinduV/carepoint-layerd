@@ -166,6 +166,8 @@ public class waitingAppointFormController {
     public void txtAppointIdOnAction(ActionEvent event) {
         String appoint_Id = txtApointId.getText();
 
+        System.out.println("appoint");
+
         try {
             serviceAppointDto dto = serviceAppointModel.searchAppointId(appoint_Id);
             if (dto != null) {
