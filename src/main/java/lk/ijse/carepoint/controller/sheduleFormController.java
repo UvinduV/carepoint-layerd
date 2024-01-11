@@ -129,6 +129,8 @@ public class sheduleFormController {
                 System.out.println(sheduleID);
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
 
 
@@ -176,6 +178,8 @@ public class sheduleFormController {
                 }
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
 
         }
@@ -368,7 +372,7 @@ public class sheduleFormController {
 
                 tblOrderCart.setItems(obList);
                 //tblOrderCart.refresh();
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 

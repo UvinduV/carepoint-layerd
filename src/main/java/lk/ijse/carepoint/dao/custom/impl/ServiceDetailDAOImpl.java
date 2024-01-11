@@ -1,5 +1,6 @@
 package lk.ijse.carepoint.dao.custom.impl;
 
+import lk.ijse.carepoint.dao.SqlUtil;
 import lk.ijse.carepoint.dao.custom.ServiceDetailDAO;
 import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.tm.cartTm;
@@ -12,9 +13,9 @@ import java.util.List;
 public class ServiceDetailDAOImpl implements ServiceDetailDAO {
 
     @Override
-    public boolean saveServiceDetails(String appointId, String totalprice, List<cartTm> cartTmList) throws SQLException {
+    public boolean saveServiceDetails(String appointId, String custID,String totalprice, List<cartTm> cartTmList) throws SQLException, ClassNotFoundException {
         for(cartTm tm : cartTmList) {
-           if( !saveServiceDetails( appointId,  totalprice,  tm)){
+           if( !saveServiceDetails( appointId, custID, totalprice,  tm)){
                return false;
            }
 
@@ -22,8 +23,8 @@ public class ServiceDetailDAOImpl implements ServiceDetailDAO {
         return true;
     }
     @Override
-    public boolean saveServiceDetails(String appointId, String totalprice, cartTm tm) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public boolean saveServiceDetails(String appointId,String custID, String totalprice, cartTm tm) throws SQLException, ClassNotFoundException {
+        /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO service_details VALUES(?, ?, ?, ?)";
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -33,7 +34,8 @@ public class ServiceDetailDAOImpl implements ServiceDetailDAO {
         pstm.setInt(3, tm.getQty());
         pstm.setDouble(4, Double.parseDouble(totalprice));
 
-        return pstm.executeUpdate() > 0;
+        return pstm.executeUpdate() > 0;*/
+        return SqlUtil.test("INSERT INTO service_details VALUES(?, ?, ?, ?)",appointId,tm.getCode(),tm.getQty(),Double.parseDouble(totalprice));
     }
 
 

@@ -24,7 +24,7 @@ public class placeServiceDetailsModel {
 
         boolean isUpdated = itemDAO.updateItem(placeOrderDto.getCartTmList());
         if (isUpdated) {
-            boolean isOrderDetailSaved = serviceDetailDAO.saveServiceDetails(placeOrderDto.getAppointId(), placeOrderDto.getTotalprice(), placeOrderDto.getCartTmList());
+            boolean isOrderDetailSaved = serviceDetailDAO.saveServiceDetails(placeOrderDto.getAppointId(),placeOrderDto.getCustomerId(),placeOrderDto.getTotalprice(), placeOrderDto.getCartTmList());
             if(isOrderDetailSaved) {
                 boolean isSaved=appointmentDAO.deleteAppoint(appointId);
                 if (isSaved) {

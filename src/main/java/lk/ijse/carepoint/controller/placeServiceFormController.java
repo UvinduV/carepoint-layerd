@@ -161,7 +161,7 @@ public class placeServiceFormController {
             }
 
             tblAppoint.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -190,6 +190,8 @@ public class placeServiceFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
     private void setCellValueFactoryCart() {

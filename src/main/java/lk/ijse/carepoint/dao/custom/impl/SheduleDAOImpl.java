@@ -1,5 +1,6 @@
 package lk.ijse.carepoint.dao.custom.impl;
 
+import lk.ijse.carepoint.dao.SqlUtil;
 import lk.ijse.carepoint.dao.custom.SheduleDAO;
 import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.SheduleDto;
@@ -10,30 +11,22 @@ import java.util.List;
 
 public class SheduleDAOImpl implements SheduleDAO {
     @Override
-    public boolean saveShedule(SheduleDto dto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public boolean saveShedule(SheduleDto dto) throws SQLException, ClassNotFoundException {
 
-        String sql = "INSERT INTO shedule VALUES(?, ?, ?, ?)";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setString(1, dto.getShedule_Id());
-        pstm.setDate(2, dto.getDate());
-        pstm.setString(3, dto.getAvaliability());
-        pstm.setString(4, dto.getDescription());
-
-        boolean isSaved = pstm.executeUpdate() > 0;
+        boolean isSaved= SqlUtil.test("INSERT INTO shedule VALUES(?, ?, ?, ?)",dto.getShedule_Id(),dto.getDate(),dto.getAvaliability(),dto.getDescription());
 
         return isSaved;
 
     }
     @Override
-    public String generateNextScheduleId() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public String generateNextScheduleId() throws SQLException, ClassNotFoundException {
+        /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT shedule_id FROM shedule ORDER BY shedule_id DESC LIMIT 1";
         PreparedStatement pstm = connection.prepareStatement(sql);
 
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet = pstm.executeQuery();*/
+        ResultSet resultSet =SqlUtil.test("SELECT shedule_id FROM shedule ORDER BY shedule_id DESC LIMIT 1");
         if(resultSet.next()) {
             return splitSheduleId(resultSet.getString(1));
         }
@@ -52,14 +45,15 @@ public class SheduleDAOImpl implements SheduleDAO {
         }
     }
     @Override
-    public SheduleDto searchSheduleID(String sheduleId) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection ();
+    public SheduleDto searchSheduleID(String sheduleId) throws SQLException, ClassNotFoundException {
+        /*Connection connection = DbConnection.getInstance().getConnection ();
 
         String sql = "SELECT * FROM shedule WHERE shedule_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1, sheduleId);
 
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet = pstm.executeQuery();*/
+        ResultSet resultSet=SqlUtil.test("SELECT * FROM shedule WHERE shedule_id = ?",sheduleId);
 
         SheduleDto dto = null;
 
@@ -74,14 +68,14 @@ public class SheduleDAOImpl implements SheduleDAO {
         return dto;
     }
     @Override
-    public List<SheduleDto> getAllShedule(Date dateIn) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public List<SheduleDto> getAllShedule(Date dateIn) throws SQLException, ClassNotFoundException {
+        /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM shedule where date(Sh_date) = ? order by Sh_date";
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setDate(1, dateIn);
-        ResultSet resultSet = pstm.executeQuery();
-
+        ResultSet resultSet = pstm.executeQuery();*/
+        ResultSet resultSet=SqlUtil.test("SELECT * FROM shedule where date(Sh_date) = ? order by Sh_date",dateIn);
 
         ArrayList<SheduleDto> dtoList = new ArrayList<>();
 

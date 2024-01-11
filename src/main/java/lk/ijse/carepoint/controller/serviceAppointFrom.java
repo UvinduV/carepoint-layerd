@@ -84,6 +84,8 @@ public class serviceAppointFrom {
             lblAppointId.setText(orderId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
         //nextToDataShedule;
@@ -243,6 +245,8 @@ public class serviceAppointFrom {
                 }
             } catch (SQLException | IOException | JRException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
 
         //}
@@ -345,6 +349,8 @@ public class serviceAppointFrom {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }
