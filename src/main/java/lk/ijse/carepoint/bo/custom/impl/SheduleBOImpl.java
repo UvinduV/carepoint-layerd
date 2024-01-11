@@ -14,12 +14,15 @@ import java.util.List;
 
 public class SheduleBOImpl implements SheduleBO {
     private SheduleDAO sheduleDAO=new SheduleDAOImpl();
+    @Override
     public String generateSheduelID() throws SQLException, ClassNotFoundException {
         return sheduleDAO.generateNewID();
     }
+    @Override
     public boolean saveSlot(SheduleDto dto) throws SQLException, ClassNotFoundException {
         return sheduleDAO.save(dto);
     }
+    @Override
     public List<SheduleDto> getAllShedule(Date dateIn) throws SQLException, ClassNotFoundException {
         return sheduleDAO.getAllShedule(dateIn);
     }

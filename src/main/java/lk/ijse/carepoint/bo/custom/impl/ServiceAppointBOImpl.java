@@ -18,28 +18,35 @@ public class ServiceAppointBOImpl implements ServiceAppointBO {
     private SheduleDAO sheduleDAO =new SheduleDAOImpl();
     private PackageDAO packageDAO=new PackageDAOImpl();
     private AppointmentDAO appointmentDAO=new AppointmentDAOImpl();
+    @Override
     public CustomerDto searchCustomer(String newValue) throws SQLException, ClassNotFoundException {
         return customerDAO.search(newValue);
     }
-
+    @Override
     public  CustomerDto searchCustomerID(String Tel) throws SQLException, ClassNotFoundException {
         return customerDAO.searchCustomerID(Tel);
     }
+    @Override
     public List<VehicleDto> getAllVehicle() throws SQLException, ClassNotFoundException {
         return vehicleDAO.getAll();
     }
+    @Override
     public SheduleDto searchSheduleID(String newValue) throws SQLException, ClassNotFoundException {
         return sheduleDAO.search(newValue);
     }
+    @Override
     public PackageDto searchPackage(String newValue) throws SQLException, ClassNotFoundException {
        return packageDAO.search(newValue);
     }
+    @Override
     public List<PackageDto> getAllPackage() throws SQLException, ClassNotFoundException {
         return packageDAO.getAll();
     }
+    @Override
     public String generateAppointID() throws SQLException, ClassNotFoundException {
         return appointmentDAO.generateNewID();
     }
+    @Override
     public boolean saveAppointment(serviceAppointDto dto) throws SQLException, ClassNotFoundException {
         return appointmentDAO.save(dto);
     }

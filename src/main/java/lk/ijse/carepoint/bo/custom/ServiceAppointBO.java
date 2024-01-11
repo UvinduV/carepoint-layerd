@@ -1,11 +1,12 @@
 package lk.ijse.carepoint.bo.custom;
 
+import lk.ijse.carepoint.bo.SuperBO;
 import lk.ijse.carepoint.dto.*;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ServiceAppointBO {
+public interface ServiceAppointBO extends SuperBO {
     CustomerDto searchCustomer(String newValue) throws SQLException, ClassNotFoundException;
     CustomerDto searchCustomerID(String Tel) throws SQLException, ClassNotFoundException;
     List<VehicleDto> getAllVehicle() throws SQLException, ClassNotFoundException;

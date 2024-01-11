@@ -13,6 +13,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carepoint.bo.custom.RegisterStatusBO;
+import lk.ijse.carepoint.bo.custom.impl.RegisterStatusBOImpl;
 import lk.ijse.carepoint.dto.CustomerDto;
 import lk.ijse.carepoint.dto.VehicleDto;
 import lk.ijse.carepoint.dao.custom.CustomerDAO;
@@ -70,8 +72,9 @@ public class registerStatus {
     @FXML
     private AnchorPane vehiclePanel;
 
-    private CustomerDAO customerDAO =new CustomerDAOImpl();
-    private VehicleDAO vehicleDAO = new VehicleDAOImpl();
+    //private CustomerDAO customerDAO =new CustomerDAOImpl();
+    //private VehicleDAO vehicleDAO = new VehicleDAOImpl();
+    private RegisterStatusBO registerStatusBO=new RegisterStatusBOImpl();
 
     //private String[] carType = {"CAR","VAN","SUV","BUS"};
 
@@ -88,7 +91,7 @@ public class registerStatus {
     private void generateNextCustID() {
 
         try {
-           String orderId = customerDAO.generateNewID();
+           String orderId = registerStatusBO.generateCustID();
            lblCustId.setText(orderId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -130,7 +133,7 @@ public class registerStatus {
            String email = "uvindu7070@gmail.com";
 
             try {
-                boolean isSaved = vehicleDAO.save(dto);
+                boolean isSaved = registerStatusBO.saveVehicle(dto);
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "vehicle saved sucessfully!").show();
@@ -193,7 +196,7 @@ public class registerStatus {
     private void loadOwnerId() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<CustomerDto> CustomerDtos = customerDAO.getAll();
+            List<CustomerDto> CustomerDtos = registerStatusBO.getAllCutomer();
 
             for (CustomerDto dto : CustomerDtos) {
                 obList.add(dto.getCust_id());
@@ -224,7 +227,7 @@ public class registerStatus {
             var dto = new CustomerDto(cust_id,name,address,tel);
 
             try {
-                boolean isSaved = customerDAO.save(dto);
+                boolean isSaved = registerStatusBO.saveCustomer(dto);
 
                 if (isSaved) {
                     loadOwnerId();

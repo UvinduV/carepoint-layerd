@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carepoint.bo.custom.ItemBO;
+import lk.ijse.carepoint.bo.custom.impl.ItemBOImpl;
 import lk.ijse.carepoint.dto.ItemDto;
 import lk.ijse.carepoint.dto.tm.itemTm;
 import lk.ijse.carepoint.dao.custom.ItemDAO;
@@ -65,7 +67,8 @@ public class itemFormController {
     @FXML
     private TextField txtUnitPrice;
 
-    private ItemDAO itemDAO=new ItemDAOImpl();
+   // private ItemDAO itemDAO=new ItemDAOImpl();
+    private ItemBO itemBO=new ItemBOImpl();
 
     public void initialize() {
         setCellValueFactory();
@@ -92,7 +95,7 @@ public class itemFormController {
     private void loadAllItems() {
         ObservableList<itemTm> obList = FXCollections.observableArrayList();
         try {
-            List<ItemDto> dtoList = itemDAO.getAll();
+            List<ItemDto> dtoList = itemBO.getAllItem();
 
             for (ItemDto dto : dtoList) {
                 obList.add(new itemTm(
@@ -133,7 +136,7 @@ public class itemFormController {
                 int focusedIndex = tblItem.getSelectionModel().getSelectedIndex();
                 String code = tblItem.getItems().get(focusedIndex).getCode();
                 try {
-                    boolean isDeleted = itemDAO.delete(code);
+                    boolean isDeleted = itemBO.deleteItem(code);
                     if (isDeleted) {
                         tblItem.getItems().remove(focusedIndex);
                         tblItem.refresh();
@@ -157,7 +160,7 @@ public class itemFormController {
         String code = txtCode.getText();
 
         try {
-            ItemDto dto = itemDAO.search(code);
+            ItemDto dto = itemBO.searchItem(code);
             if (dto != null) {
                 setFields(dto);
             } else {
@@ -181,7 +184,7 @@ public class itemFormController {
 
 //        var model = new ItemModel();
         try {
-            boolean isSaved = itemDAO.save(dto);
+            boolean isSaved = itemBO.saveItem(dto);
             if (isSaved) {
                 loadAllItems();
                 tblItem.refresh();
@@ -208,7 +211,7 @@ public class itemFormController {
 
 //        var model = new ItemModel();
         try {
-            boolean isUpdated = itemDAO.update(new ItemDto(code, description, unitPrice, qtyOnHand));
+            boolean isUpdated = itemBO.updateItem(new ItemDto(code, description, unitPrice, qtyOnHand));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "item updated").show();
             }

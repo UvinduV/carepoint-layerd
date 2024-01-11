@@ -9,7 +9,8 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.carepoint.bo.placeServiceDetailsModel;
+import lk.ijse.carepoint.bo.custom.PlaceServiceBO;
+import lk.ijse.carepoint.bo.custom.impl.PlaceServiceBOImpl;
 import lk.ijse.carepoint.dao.custom.*;
 import lk.ijse.carepoint.dao.custom.impl.AppointmentDAOImpl;
 import lk.ijse.carepoint.dao.custom.impl.CustomerDAOImpl;
@@ -114,10 +115,11 @@ public class placeServiceFormController {
     @FXML
     private AnchorPane waitingAppointPanel;
 
-    private lk.ijse.carepoint.bo.placeServiceDetailsModel placeServiceDetailsModel =new placeServiceDetailsModel();
-    private CustomerDAO customerDAO=new CustomerDAOImpl();
-    private ItemDAO itemDAO=new ItemDAOImpl();
-    private AppointmentDAO appointmentDAO=new AppointmentDAOImpl();
+
+    //private CustomerDAO customerDAO=new CustomerDAOImpl();
+    //private ItemDAO itemDAO=new ItemDAOImpl();
+    //private AppointmentDAO appointmentDAO=new AppointmentDAOImpl();
+    private PlaceServiceBO placeServiceBO=new PlaceServiceBOImpl();
 
     private ObservableList<cartTm> obList = FXCollections.observableArrayList();
 
@@ -142,7 +144,7 @@ public class placeServiceFormController {
         ObservableList<appointmentTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<serviceAppointDto> dtoList = appointmentDAO.getAll();
+            List<serviceAppointDto> dtoList = placeServiceBO.getAllAppoint();
 
             for (serviceAppointDto dto : dtoList) {
                 obList.add(
@@ -174,7 +176,7 @@ public class placeServiceFormController {
         System.out.println("appoint");
 
         try {
-            serviceAppointDto dto = appointmentDAO.search(appoint_Id);
+            serviceAppointDto dto = placeServiceBO.searchAppoint(appoint_Id);
             if (dto != null) {
                 txtApointId.setText(dto.getAppoint_Id());
                 lblCustID.setText(dto.getCust_Id());
@@ -206,7 +208,7 @@ public class placeServiceFormController {
     private String getCustName(String id) {
         String custId = id;
         try {
-            CustomerDto customerDto = customerDAO.search(custId);
+            CustomerDto customerDto = placeServiceBO.searchCustomer(custId);
 //            System.out.println(customerDto);
             if (customerDto != null) {
                 lblCustName.setText(customerDto.getName());
@@ -223,7 +225,7 @@ public class placeServiceFormController {
     private void loadItemCodes() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<ItemDto> itemDtos = itemDAO.getAll();
+            List<ItemDto> itemDtos = placeServiceBO.getAllItem();
 
             for (ItemDto dto : itemDtos) {
                 obList.add(dto.getCode());
@@ -307,7 +309,7 @@ public class placeServiceFormController {
 
         txtQty.requestFocus();
         try {
-            ItemDto dto = itemDAO.search(code);
+            ItemDto dto = placeServiceBO.searchItem(code);
             lblDesc.setText(dto.getDescription());
             lblUnitPrice.setText(String.valueOf(dto.getUnitPrice()));
             lblQtyOnHand.setText(String.valueOf(dto.getQtyOnHand()));
@@ -334,7 +336,7 @@ public class placeServiceFormController {
         var placeOrderDto = new ServiceDetailsDto(appointId, date, customerId, cartTmList, totalprice);
         boolean isSuccess = false;
         try {
-            isSuccess = placeServiceDetailsModel.placeOrder(placeOrderDto);
+            isSuccess = placeServiceBO.placeOrder(placeOrderDto);
         } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
@@ -354,7 +356,7 @@ public class placeServiceFormController {
         ///////
         //CustomerModel.searchCustomer(cust_Id);
         try {
-            CustomerDto customerDto = customerDAO.search(cust_Id);
+            CustomerDto customerDto = placeServiceBO.searchCustomer(cust_Id);
             //            System.out.println(customerDto);
             if (customerDto != null) {
                 lblcustEmail.setText(customerDto.getAddress());

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 public class SignUpBOImpl implements SignUpBO {
     UserDAO userDAO=new UserDAOImpl();
+    @Override
     public boolean saveUser(UserDto dto) throws SQLException, ClassNotFoundException {
         return userDAO.save(dto);
     }
