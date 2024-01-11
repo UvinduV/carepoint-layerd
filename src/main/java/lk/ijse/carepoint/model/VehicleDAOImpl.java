@@ -1,7 +1,6 @@
 package lk.ijse.carepoint.model;
 
 import lk.ijse.carepoint.db.DbConnection;
-import lk.ijse.carepoint.dto.CustomerDto;
 import lk.ijse.carepoint.dto.VehicleDto;
 
 import java.sql.Connection;
@@ -11,10 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehicleModel {
+public class VehicleDAOImpl implements VehicleDAO{
 
-
-    public static List<VehicleDto> loadAllItems() throws SQLException {
+    @Override
+    public List<VehicleDto> loadAllItems() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM vehicle";
@@ -36,7 +35,8 @@ public class VehicleModel {
 
     }
 
-    public static List<VehicleDto> loadAllvehicles(String custID) throws SQLException {
+    @Override
+    public  List<VehicleDto> loadAllvehicles(String custID) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM vehicle WHERE cust_id = ?";
@@ -57,6 +57,7 @@ public class VehicleModel {
         return itemList;
     }
 
+    @Override
     public boolean saveVehicle(VehicleDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

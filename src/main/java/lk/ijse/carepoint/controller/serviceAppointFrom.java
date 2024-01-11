@@ -1,15 +1,12 @@
 package lk.ijse.carepoint.controller;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.carepoint.db.DbConnection;
 import lk.ijse.carepoint.dto.*;
@@ -24,10 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class serviceAppointFrom {
     @FXML
@@ -71,10 +65,12 @@ public class serviceAppointFrom {
 
     private ObservableList<appointmentTm> obList = FXCollections.observableArrayList();
 
+    private CustomerDAO customerDAO=new CustomerDAOImpl();
+    private VehicleDAO vehicleDAO=new VehicleDAOImpl();
+
 
 
     public void initialize() {
-        //loadToCustomerID();
         loadToVehicleID();
         generateNextAppointId();
         loadToPackageID();
@@ -213,7 +209,7 @@ public class serviceAppointFrom {
                     ///////
 
                     try {
-                        CustomerDto customerDto = CustomerModel.searchCustomer(cust_Id);
+                        CustomerDto customerDto = customerDAO.searchCustomer(cust_Id);
                         //            System.out.println(customerDto);
                         if (customerDto != null) {
                             lblcustEmail.setText(customerDto.getAddress());
@@ -295,7 +291,7 @@ public class serviceAppointFrom {
         String custID = lblCustID.getText();
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<VehicleDto> VehicleDtos = VehicleModel.loadAllItems();
+            List<VehicleDto> VehicleDtos = vehicleDAO.loadAllItems();
 
             for (VehicleDto dto : VehicleDtos) {
                 obList.add(dto.getVehicle_no());
@@ -311,7 +307,7 @@ public class serviceAppointFrom {
 
 //        var model = new CustomerModel();
         try {
-            CustomerDto customerDto = CustomerModel.searchCustomerID(tel);
+            CustomerDto customerDto = customerDAO.searchCustomerID(tel);
 //            System.out.println(customerDto);
             if (customerDto != null) {
                 lblCustID.setText(customerDto.getCust_id());

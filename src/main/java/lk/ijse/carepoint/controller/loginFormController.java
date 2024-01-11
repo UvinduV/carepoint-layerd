@@ -10,13 +10,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.carepoint.dto.UserDto;
-import lk.ijse.carepoint.model.UserModel;
+import lk.ijse.carepoint.model.UserDAO;
+import lk.ijse.carepoint.model.UserDAOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -36,7 +34,7 @@ public class loginFormController {
 
     @FXML
     private JFXTextField txtUsername;
-    private UserModel userModel =new UserModel();
+    private UserDAO userDAO =new UserDAOImpl();
     public void btnSignInOnAction(ActionEvent event) {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
@@ -47,7 +45,7 @@ public class loginFormController {
         }
         //UserDto userDto = null;
         try {
-            UserDto userDto = userModel.getUser(username, password);
+            UserDto userDto = userDAO.getUser(username, password);
             if (userDto != null) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Login Successful").show();
                 System.out.println("Login Successful");

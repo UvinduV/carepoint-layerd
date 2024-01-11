@@ -10,8 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerModel {
-    public static String generateNextOrderId() throws SQLException {
+public class CustomerDAOImpl implements CustomerDAO{
+    @Override
+    public  String generateNextOrderId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT cust_id FROM customer ORDER BY cust_id DESC LIMIT 1";
@@ -24,7 +25,8 @@ public class CustomerModel {
         return splitCustId(null);
     }
 
-    private static String splitCustId(String currentCustId) {
+   @Override
+    public String splitCustId(String currentCustId) {
        // private String splitOrderId(String currentOrderId) {
             if(currentCustId != null) {
                 String[] split = currentCustId.split("C0");
@@ -38,7 +40,8 @@ public class CustomerModel {
 
     }
 
-    public static List<CustomerDto> loadAllItems() throws SQLException {
+    @Override
+    public  List<CustomerDto> loadAllItems() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM customer";
@@ -59,9 +62,8 @@ public class CustomerModel {
         return itemList;
     }
 
-
-
-    public static CustomerDto searchCustomerID(String Tel) throws SQLException {
+    @Override
+    public  CustomerDto searchCustomerID(String Tel) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection ();
 
         String sql = "SELECT * FROM customer WHERE tel = ?";
@@ -83,7 +85,8 @@ public class CustomerModel {
         return dto;
     }
 
-    public static CustomerDto searchCustomer(String custId) throws SQLException {
+    @Override
+    public CustomerDto searchCustomer(String custId) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection ();
 
         String sql = "SELECT * FROM customer WHERE cust_id = ?";
@@ -105,6 +108,7 @@ public class CustomerModel {
         return dto;
     }
 
+    @Override
     public boolean saveCustomer(CustomerDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

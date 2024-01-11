@@ -14,14 +14,13 @@ import lk.ijse.carepoint.dto.tm.appointmentTm;
 import lk.ijse.carepoint.dto.tm.cartTm;
 import lk.ijse.carepoint.model.*;
 
-import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class waitingAppointFormController {
+public class placeServiceFormController {
     @FXML
     private Label lblcustEmail;
     @FXML
@@ -111,7 +110,11 @@ public class waitingAppointFormController {
     @FXML
     private AnchorPane waitingAppointPanel;
     private ServiceAppointModel serviceAppointModel = new ServiceAppointModel();
+
+    private ServiceDetailsModel serviceDetailsModel=new ServiceDetailsModel();
     private ItemModel itemModel= new ItemModel();
+
+    private CustomerDAO customerDAO=new CustomerDAOImpl();
 
     private ObservableList<cartTm> obList = FXCollections.observableArrayList();
 
@@ -199,7 +202,7 @@ public class waitingAppointFormController {
     private String getCustName(String id) {
         String custId = id;
         try {
-            CustomerDto customerDto = CustomerModel.searchCustomer(custId);
+            CustomerDto customerDto = customerDAO.searchCustomer(custId);
 //            System.out.println(customerDto);
             if (customerDto != null) {
                 lblCustName.setText(customerDto.getName());
@@ -311,7 +314,7 @@ public class waitingAppointFormController {
 
     public void btnServiceCompleteOnAction(ActionEvent event) {
         String appointId = txtApointId.getText();
-       // Date date = Date.valueOf(lblAppointDate.getText());
+        Date date = Date.valueOf(lblAppointDate.getText());
         String customerId = lblCustID.getText();
         String totalprice= lblNetTotal.getText();
         int qty = 0;
@@ -324,24 +327,21 @@ public class waitingAppointFormController {
             cartTmList.add(CartTm);
         }
 
-       // var placeOrderDto = new PlaceServiceDetailsDto(appointId, date, customerId, cartTmList, totalprice);
-        var dto = new serviceRecodDto(appointId,customerId, totalprice, qty, itemCode);
+        var placeOrderDto = new PlaceServiceDetailsDto(appointId, date, customerId, cartTmList, totalprice);
+        boolean isSuccess = false;
         try {
-            //boolean isSuccess = PlaceServiceDetailsModel.placeOrder(placeOrderDto);
-            boolean isSaved = ServiceRecodModel.saveRecod(dto);
-            if (isSaved) {
-                serviceAppointModel.deleteAppoint(appointId);
-                loadAllAppointment();
-                tblAppoint.refresh();
-
-                serviceRecodFormController.passData(appointId, customerId, totalprice);
-
-                new Alert(Alert.AlertType.CONFIRMATION, "service complete sucessfully!").show();
-                emailSend(customerId);
-                clearFields();
-            }
+            isSuccess = serviceDetailsModel.placeOrder(placeOrderDto);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+
+        if (isSuccess) {
+            loadAllAppointment();
+            tblAppoint.refresh();
+
+            new Alert(Alert.AlertType.CONFIRMATION, "service complete sucessfully!").show();
+            emailSend(customerId);
+            clearFields();
         }
 
     }
@@ -350,7 +350,7 @@ public class waitingAppointFormController {
         ///////
         //CustomerModel.searchCustomer(cust_Id);
         try {
-            CustomerDto customerDto = CustomerModel.searchCustomer(cust_Id);
+            CustomerDto customerDto = customerDAO.searchCustomer(cust_Id);
             //            System.out.println(customerDto);
             if (customerDto != null) {
                 lblcustEmail.setText(customerDto.getAddress());

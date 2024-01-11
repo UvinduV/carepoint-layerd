@@ -8,7 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserModel {
+public class UserDAOImpl implements UserDAO{
+    @Override
     public boolean saveUser(UserDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -26,6 +27,7 @@ public class UserModel {
         return isSaved;
     }
 
+    @Override
     public UserDto getUser(String un, String pw) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection ();
 

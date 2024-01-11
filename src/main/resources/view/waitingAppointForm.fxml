@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="waitingAppointPanel" prefHeight="615.0" prefWidth="1228.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carepoint.controller.waitingAppointFormController">
+<AnchorPane fx:id="waitingAppointPanel" prefHeight="615.0" prefWidth="1228.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carepoint.controller.placeServiceFormController">
    <children>
       <AnchorPane fx:id="AddServiceRecodsPanel" layoutX="590.0" layoutY="14.0" prefHeight="590.0" prefWidth="595.0" style="-fx-background-color: #ebe9e9; -fx-background-radius: 20;">
          <children>

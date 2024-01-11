@@ -12,24 +12,6 @@ import java.util.List;
 public class ServiceRecodModel {
 
 
-    public static boolean saveRecod(serviceRecodDto dto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "INSERT INTO service_detail VALUES(?, ?, ?, ?, ?)";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setString(1, dto.getAppointId());
-        pstm.setString(2, dto.getCustomerId());
-        pstm.setString(3, dto.getItemCode());
-        pstm.setInt(4, dto.getQty());
-        pstm.setString(5, dto.getTotalprice());
-
-
-        boolean isSaved = pstm.executeUpdate() > 0;
-
-        return isSaved;
-    }
-
     public boolean saveServiceDetails(String appointId, String totalprice, List<cartTm> cartTmList) throws SQLException {
         for(cartTm tm : cartTmList) {
            if( !saveServiceDetails( appointId,  totalprice,  tm)){

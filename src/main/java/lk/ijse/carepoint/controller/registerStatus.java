@@ -3,7 +3,6 @@ package lk.ijse.carepoint.controller;
 //import com.google.protobuf.Message;
 import com.jfoenix.controls.JFXButton;
 //import com.mysql.cj.Session;
-import com.sun.javafx.scene.control.Properties;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,18 +15,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.carepoint.dto.CustomerDto;
 import lk.ijse.carepoint.dto.VehicleDto;
-import lk.ijse.carepoint.model.CustomerModel;
-import lk.ijse.carepoint.model.VehicleModel;
+import lk.ijse.carepoint.model.CustomerDAO;
+import lk.ijse.carepoint.model.CustomerDAOImpl;
+import lk.ijse.carepoint.model.VehicleDAO;
+import lk.ijse.carepoint.model.VehicleDAOImpl;
 
 //import javax.mail.internet.MimeMessage;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.io.IOException;
-import java.net.PasswordAuthentication;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
@@ -76,8 +70,8 @@ public class registerStatus {
     @FXML
     private AnchorPane vehiclePanel;
 
-    private final CustomerModel customerModel = new CustomerModel();
-    private final VehicleModel vehicleModel = new VehicleModel();
+    private CustomerDAO customerDAO =new CustomerDAOImpl();
+    private VehicleDAO vehicleDAO = new VehicleDAOImpl();
 
     //private String[] carType = {"CAR","VAN","SUV","BUS"};
 
@@ -94,7 +88,7 @@ public class registerStatus {
     private void generateNextCustID() {
 
         try {
-           String orderId = CustomerModel.generateNextOrderId();
+           String orderId = customerDAO.generateNextOrderId();
            lblCustId.setText(orderId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -134,7 +128,7 @@ public class registerStatus {
            String email = "uvindu7070@gmail.com";
 
             try {
-                boolean isSaved = vehicleModel.saveVehicle(dto);
+                boolean isSaved = vehicleDAO.saveVehicle(dto);
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "vehicle saved sucessfully!").show();
@@ -195,7 +189,7 @@ public class registerStatus {
     private void loadOwnerId() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<CustomerDto> CustomerDtos = CustomerModel.loadAllItems();
+            List<CustomerDto> CustomerDtos = customerDAO.loadAllItems();
 
             for (CustomerDto dto : CustomerDtos) {
                 obList.add(dto.getCust_id());
@@ -226,7 +220,7 @@ public class registerStatus {
             var dto = new CustomerDto(cust_id,name,address,tel);
 
             try {
-                boolean isSaved = customerModel.saveCustomer(dto);
+                boolean isSaved = customerDAO.saveCustomer(dto);
 
                 if (isSaved) {
                     loadOwnerId();
