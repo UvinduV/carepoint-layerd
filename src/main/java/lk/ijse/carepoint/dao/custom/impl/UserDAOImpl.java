@@ -9,10 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
     @Override
-    public boolean saveUser(UserDto dto) throws SQLException, ClassNotFoundException {
+    public boolean save(UserDto dto) throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO user VALUES(?, ?, ?, ?, ?)";
@@ -55,5 +56,30 @@ public class UserDAOImpl implements UserDAO {
             dto = new UserDto(username, password, first_name, last_Name, possition);
         }
         return dto;
+    }
+
+    @Override
+    public List<UserDto> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public boolean update(UserDto dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public String generateNewID() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public UserDto search(String newValue) throws SQLException, ClassNotFoundException {
+        return null;
     }
 }

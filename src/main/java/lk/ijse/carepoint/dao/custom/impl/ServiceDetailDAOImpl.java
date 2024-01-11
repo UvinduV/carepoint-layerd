@@ -39,4 +39,33 @@ public class ServiceDetailDAOImpl implements ServiceDetailDAO {
     }
 
 
+    @Override
+    public List<ServiceDetailDAO> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public boolean save(ServiceDetailDAO dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean update(ServiceDetailDAO dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public String generateNewID() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public ServiceDetailDAO search(String newValue) throws SQLException, ClassNotFoundException {
+        return null;
+    }
 }

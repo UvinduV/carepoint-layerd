@@ -130,7 +130,7 @@ public class registerStatus {
            String email = "uvindu7070@gmail.com";
 
             try {
-                boolean isSaved = vehicleDAO.saveVehicle(dto);
+                boolean isSaved = vehicleDAO.save(dto);
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "vehicle saved sucessfully!").show();

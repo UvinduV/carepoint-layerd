@@ -4,7 +4,6 @@ import lk.ijse.carepoint.dto.tm.cartTm;
 import lombok.*;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class PlaceServiceDetailsDto {
+public class ServiceDetailsDto {
     private String appointId;
     private Date date;
     private String customerId;

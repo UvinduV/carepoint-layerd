@@ -80,7 +80,7 @@ public class serviceAppointFrom {
     }
     private void generateNextAppointId() {
         try {
-            String orderId = appointmentDAO.generateNextAppointId();
+            String orderId = appointmentDAO.generateNewID();
             lblAppointId.setText(orderId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -98,7 +98,7 @@ public class serviceAppointFrom {
         String id =  cmbPackageCode.getValue();
 //        CustomerModel customerModel = new CustomerModel();
         try {
-            PackageDto packageDto = packageDAO.searchPackage(id);
+            PackageDto packageDto = packageDAO.search(id);
             lblDescription.setText(packageDto.getType());
             lblUnitPrice.setText(String.valueOf(packageDto.getAmount()));
 
@@ -109,7 +109,7 @@ public class serviceAppointFrom {
     private void loadToPackageID() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<PackageDto> PackageDtos = packageDAO.loadAllItems();
+            List<PackageDto> PackageDtos = packageDAO.getAll();
 
             for (PackageDto dto : PackageDtos) {
                 obList.add(dto.getId());
@@ -201,7 +201,7 @@ public class serviceAppointFrom {
             var dto = new serviceAppointDto(appoint_Id, cust_Id, vehicle_No, shedule_Id, package_Id,paymentId, date, time, amount);
 
             try {
-                boolean isSaved = appointmentDAO.saveAppoint(dto);
+                boolean isSaved = appointmentDAO.save(dto);
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Appoint saved sucessfully!").show();
@@ -299,7 +299,7 @@ public class serviceAppointFrom {
         String custID = lblCustID.getText();
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<VehicleDto> VehicleDtos = vehicleDAO.loadAllItems();
+            List<VehicleDto> VehicleDtos = vehicleDAO.getAll();
 
             for (VehicleDto dto : VehicleDtos) {
                 obList.add(dto.getVehicle_no());
@@ -338,7 +338,7 @@ public class serviceAppointFrom {
 
 
         try {
-            SheduleDto sheduleDto = sheduleDAO.searchSheduleID(shedule_ID);
+            SheduleDto sheduleDto = sheduleDAO.search(shedule_ID);
 
             if (sheduleDto != null) {
                 txtSheduleID.setText(sheduleDto.getShedule_Id());

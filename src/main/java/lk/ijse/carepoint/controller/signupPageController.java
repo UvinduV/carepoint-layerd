@@ -71,7 +71,7 @@ public class signupPageController {
 
 
         try {
-           boolean isSaved = userDAO.saveUser(dto);
+           boolean isSaved = userDAO.save(dto);
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
                 //clearFields();

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class AppointmentDAOImpl implements AppointmentDAO {
     @Override
-    public String generateNextAppointId() throws SQLException, ClassNotFoundException {
+    public String generateNewID() throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT appoint_id FROM appointment ORDER BY appoint_id DESC LIMIT 1";
@@ -40,7 +40,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         }
     }
     @Override
-    public boolean saveAppoint(serviceAppointDto dto) throws SQLException, ClassNotFoundException {
+    public boolean save(serviceAppointDto dto) throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO appointment VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -63,7 +63,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         return isSaved;
     }
     @Override
-    public List<serviceAppointDto> getAllAppointment() throws SQLException, ClassNotFoundException {
+    public List<serviceAppointDto> getAll() throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM appointment";
@@ -91,7 +91,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         return dtoList;
     }
     @Override
-    public serviceAppointDto searchAppointId(String appointId) throws SQLException, ClassNotFoundException {
+    public serviceAppointDto search(String newValue) throws SQLException, ClassNotFoundException {
 
         /*Connection connection = DbConnection.getInstance().getConnection();
         String sql = "SELECT * FROM appointment WHERE appoint_id = ?";
@@ -100,7 +100,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         pstm.setString(1, appointId);
 
         ResultSet resultSet = pstm.executeQuery();*/
-        ResultSet resultSet=SqlUtil.test("SELECT * FROM appointment WHERE appoint_id = ?",appointId);
+        ResultSet resultSet=SqlUtil.test("SELECT * FROM appointment WHERE appoint_id = ?",newValue);
 
         serviceAppointDto dto = null;
 
@@ -120,7 +120,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         return dto;
     }
     @Override
-    public boolean deleteAppoint(String appointId) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "DELETE FROM appointment WHERE appoint_id = ?";
@@ -129,6 +129,13 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         pstm.setString(1, appointId);
 
         return pstm.executeUpdate() > 0;*/
-        return SqlUtil.test("DELETE FROM appointment WHERE appoint_id = ?");
+        return SqlUtil.test("DELETE FROM appointment WHERE appoint_id = ?",id);
     }
+//////////
+    @Override
+    public boolean update(serviceAppointDto dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+
 }

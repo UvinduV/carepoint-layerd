@@ -11,7 +11,7 @@ import java.util.List;
 
 public class SheduleDAOImpl implements SheduleDAO {
     @Override
-    public boolean saveShedule(SheduleDto dto) throws SQLException, ClassNotFoundException {
+    public boolean save(SheduleDto dto) throws SQLException, ClassNotFoundException {
 
         boolean isSaved= SqlUtil.test("INSERT INTO shedule VALUES(?, ?, ?, ?)",dto.getShedule_Id(),dto.getDate(),dto.getAvaliability(),dto.getDescription());
 
@@ -19,7 +19,7 @@ public class SheduleDAOImpl implements SheduleDAO {
 
     }
     @Override
-    public String generateNextScheduleId() throws SQLException, ClassNotFoundException {
+    public String generateNewID() throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT shedule_id FROM shedule ORDER BY shedule_id DESC LIMIT 1";
@@ -45,7 +45,7 @@ public class SheduleDAOImpl implements SheduleDAO {
         }
     }
     @Override
-    public SheduleDto searchSheduleID(String sheduleId) throws SQLException, ClassNotFoundException {
+    public SheduleDto search(String newValue) throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection ();
 
         String sql = "SELECT * FROM shedule WHERE shedule_id = ?";
@@ -53,7 +53,7 @@ public class SheduleDAOImpl implements SheduleDAO {
         pstm.setString(1, sheduleId);
 
         ResultSet resultSet = pstm.executeQuery();*/
-        ResultSet resultSet=SqlUtil.test("SELECT * FROM shedule WHERE shedule_id = ?",sheduleId);
+        ResultSet resultSet=SqlUtil.test("SELECT * FROM shedule WHERE shedule_id = ?",newValue);
 
         SheduleDto dto = null;
 
@@ -92,6 +92,20 @@ public class SheduleDAOImpl implements SheduleDAO {
         return dtoList;
     }
 
+//////////////
+    @Override
+    public List<SheduleDto> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
 
+    @Override
+    public boolean update(SheduleDto dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
 
 }

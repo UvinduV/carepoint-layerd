@@ -124,7 +124,7 @@ public class sheduleFormController {
     }
     public void generateNextScheduleId() {
             try {
-                String sheduleID = sheduleDAO.generateNextScheduleId();
+                String sheduleID = sheduleDAO.generateNewID();
                 lblScheduleIDIcon.setText(sheduleID);
                 System.out.println(sheduleID);
             } catch (SQLException e) {
@@ -165,7 +165,7 @@ public class sheduleFormController {
             var dto = new SheduleDto(shedule_Id, date, avalibility, description);
 
             try {
-                boolean isSaved = sheduleDAO.saveShedule(dto);
+                boolean isSaved = sheduleDAO.save(dto);
 
                 //boolean ispassed = serviceAppointFrom.passSheduleID(shedule_Id); //passSheduleID
 

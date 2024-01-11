@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PackageDAOImpl implements PackageDAO {
-    public List<PackageDto> loadAllItems() throws SQLException, ClassNotFoundException {
+    public List<PackageDto> getAll() throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM package";
@@ -35,7 +35,7 @@ public class PackageDAOImpl implements PackageDAO {
         return itemList;
     }
 
-    public PackageDto searchPackage(String Pid) throws SQLException, ClassNotFoundException {
+    public PackageDto search(String newValue) throws SQLException, ClassNotFoundException {
        /* Connection connection = DbConnection.getInstance().getConnection ();
 
         String sql = "SELECT * FROM package WHERE id = ?";
@@ -43,7 +43,7 @@ public class PackageDAOImpl implements PackageDAO {
         pstm.setString(1, Pid);
 
         ResultSet resultSet = pstm.executeQuery();*/
-        ResultSet resultSet =SqlUtil.test("SELECT * FROM package WHERE id = ?",Pid);
+        ResultSet resultSet =SqlUtil.test("SELECT * FROM package WHERE id = ?",newValue);
 
         PackageDto dto = null;
 
@@ -56,4 +56,26 @@ public class PackageDAOImpl implements PackageDAO {
         }
         return dto;
     }
+//////////
+
+    @Override
+    public boolean save(PackageDto dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean update(PackageDto dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public String generateNewID() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
 }

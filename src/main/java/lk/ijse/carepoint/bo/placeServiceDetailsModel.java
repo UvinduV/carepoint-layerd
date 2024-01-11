@@ -5,7 +5,7 @@ import lk.ijse.carepoint.dao.custom.impl.AppointmentDAOImpl;
 import lk.ijse.carepoint.dao.custom.impl.ItemDAOImpl;
 import lk.ijse.carepoint.dao.custom.impl.ServiceDetailDAOImpl;
 import lk.ijse.carepoint.db.DbConnection;
-import lk.ijse.carepoint.dto.PlaceServiceDetailsDto;
+import lk.ijse.carepoint.dto.ServiceDetailsDto;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ public class placeServiceDetailsModel {
     private ServiceDetailDAO serviceDetailDAO=new ServiceDetailDAOImpl();
     private AppointmentDAO appointmentDAO=new AppointmentDAOImpl();
     private ItemDAO itemDAO=new ItemDAOImpl();
-    public boolean placeOrder(PlaceServiceDetailsDto placeOrderDto) throws SQLException, ClassNotFoundException {
+    public boolean placeOrder(ServiceDetailsDto placeOrderDto) throws SQLException, ClassNotFoundException {
         String appointId = placeOrderDto.getAppointId();
         
 
@@ -26,7 +26,7 @@ public class placeServiceDetailsModel {
         if (isUpdated) {
             boolean isOrderDetailSaved = serviceDetailDAO.saveServiceDetails(placeOrderDto.getAppointId(),placeOrderDto.getCustomerId(),placeOrderDto.getTotalprice(), placeOrderDto.getCartTmList());
             if(isOrderDetailSaved) {
-                boolean isSaved=appointmentDAO.deleteAppoint(appointId);
+                boolean isSaved=appointmentDAO.delete(appointId);
                 if (isSaved) {
                     connection.commit();
                     isSuccess = true;

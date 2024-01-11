@@ -142,7 +142,7 @@ public class placeServiceFormController {
         ObservableList<appointmentTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<serviceAppointDto> dtoList = appointmentDAO.getAllAppointment();
+            List<serviceAppointDto> dtoList = appointmentDAO.getAll();
 
             for (serviceAppointDto dto : dtoList) {
                 obList.add(
@@ -174,7 +174,7 @@ public class placeServiceFormController {
         System.out.println("appoint");
 
         try {
-            serviceAppointDto dto = appointmentDAO.searchAppointId(appoint_Id);
+            serviceAppointDto dto = appointmentDAO.search(appoint_Id);
             if (dto != null) {
                 txtApointId.setText(dto.getAppoint_Id());
                 lblCustID.setText(dto.getCust_Id());
@@ -331,7 +331,7 @@ public class placeServiceFormController {
             cartTmList.add(CartTm);
         }
 
-        var placeOrderDto = new PlaceServiceDetailsDto(appointId, date, customerId, cartTmList, totalprice);
+        var placeOrderDto = new ServiceDetailsDto(appointId, date, customerId, cartTmList, totalprice);
         boolean isSuccess = false;
         try {
             isSuccess = placeServiceDetailsModel.placeOrder(placeOrderDto);

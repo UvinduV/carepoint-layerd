@@ -15,7 +15,7 @@ import java.util.List;
 public class VehicleDAOImpl implements VehicleDAO {
 
     @Override
-    public List<VehicleDto> loadAllItems() throws SQLException, ClassNotFoundException {
+    public List<VehicleDto> getAll() throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM vehicle";
@@ -54,7 +54,7 @@ public class VehicleDAOImpl implements VehicleDAO {
     }
 
     @Override
-    public boolean saveVehicle(VehicleDto dto) throws SQLException, ClassNotFoundException {
+    public boolean save(VehicleDto dto) throws SQLException, ClassNotFoundException {
         /*Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO vehicle VALUES(?, ?, ?, ?)";
@@ -70,6 +70,26 @@ public class VehicleDAOImpl implements VehicleDAO {
 
         return isSaved;
     }
+////////////
 
+    @Override
+    public boolean update(VehicleDto dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public String generateNewID() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public VehicleDto search(String newValue) throws SQLException, ClassNotFoundException {
+        return null;
+    }
 }
 
