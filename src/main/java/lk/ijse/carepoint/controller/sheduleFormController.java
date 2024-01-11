@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carepoint.bo.custom.SheduleBO;
+import lk.ijse.carepoint.bo.custom.impl.SheduleBOImpl;
 import lk.ijse.carepoint.dto.SheduleDto;
 import lk.ijse.carepoint.dto.tm.scheduleTm;
 import lk.ijse.carepoint.dao.custom.SheduleDAO;
@@ -107,7 +109,8 @@ public class sheduleFormController {
     @FXML
     private TableView<scheduleTm> tblOrderCart;
 
-    private SheduleDAO sheduleDAO=new SheduleDAOImpl();
+    //private SheduleDAO sheduleDAO=new SheduleDAOImpl();
+    private SheduleBO sheduleBO=new SheduleBOImpl();
     private ObservableList<scheduleTm> obListShedule = FXCollections.observableArrayList();
     public void initialize() {
         setCellValueFactory();
@@ -124,7 +127,7 @@ public class sheduleFormController {
     }
     public void generateNextScheduleId() {
             try {
-                String sheduleID = sheduleDAO.generateNewID();
+                String sheduleID = sheduleBO.generateSheduelID();
                 lblScheduleIDIcon.setText(sheduleID);
                 System.out.println(sheduleID);
             } catch (SQLException e) {
@@ -165,7 +168,7 @@ public class sheduleFormController {
             var dto = new SheduleDto(shedule_Id, date, avalibility, description);
 
             try {
-                boolean isSaved = sheduleDAO.save(dto);
+                boolean isSaved = sheduleBO.saveSlot(dto);
 
                 //boolean ispassed = serviceAppointFrom.passSheduleID(shedule_Id); //passSheduleID
 
@@ -357,7 +360,7 @@ public class sheduleFormController {
 
             try {
                 System.out.println(date);
-                List<SheduleDto> dtoList = sheduleDAO.getAllShedule(date);
+                List<SheduleDto> dtoList = sheduleBO.getAllShedule(date);
 
                 for (SheduleDto dto : dtoList) {
                     obList.add(

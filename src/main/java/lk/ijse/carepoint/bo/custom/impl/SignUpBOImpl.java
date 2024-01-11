@@ -1,4 +1,4 @@
-package lk.ijse.carepoint.bo;
+package lk.ijse.carepoint.bo.custom.impl;
 
 import lk.ijse.carepoint.bo.custom.SignUpBO;
 import lk.ijse.carepoint.dao.SqlUtil;

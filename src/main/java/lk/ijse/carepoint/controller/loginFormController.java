@@ -12,11 +12,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.carepoint.bo.LoginBOImpl;
+import lk.ijse.carepoint.bo.custom.impl.LoginBOImpl;
 import lk.ijse.carepoint.bo.custom.LoginBO;
 import lk.ijse.carepoint.dto.UserDto;
-import lk.ijse.carepoint.dao.custom.UserDAO;
-import lk.ijse.carepoint.dao.custom.impl.UserDAOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
