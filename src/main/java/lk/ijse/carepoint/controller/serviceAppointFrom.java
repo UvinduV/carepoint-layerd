@@ -67,7 +67,7 @@ public class serviceAppointFrom {
 
     private CustomerDAO customerDAO=new CustomerDAOImpl();
     private VehicleDAO vehicleDAO=new VehicleDAOImpl();
-
+    private SheduleDAO sheduleDAO =new SheduleDAOImpl();
 
 
     public void initialize() {
@@ -326,7 +326,7 @@ public class serviceAppointFrom {
 
 
         try {
-            SheduleDto sheduleDto = SheduleModel.searchSheduleID(shedule_ID);
+            SheduleDto sheduleDto = sheduleDAO.searchSheduleID(shedule_ID);
 
             if (sheduleDto != null) {
                 txtSheduleID.setText(sheduleDto.getShedule_Id());

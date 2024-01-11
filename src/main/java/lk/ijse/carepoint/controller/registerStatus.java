@@ -276,9 +276,6 @@ public class registerStatus {
     public void btnCreateAppointOnAction(ActionEvent event) throws IOException {
         navigateToAppoint();
     }
-    ///////
 
-
-    ////////////////// email sending code///////
 
 }

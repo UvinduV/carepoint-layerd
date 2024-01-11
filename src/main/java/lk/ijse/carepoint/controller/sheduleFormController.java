@@ -9,12 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.carepoint.dto.CustomerDto;
 import lk.ijse.carepoint.dto.SheduleDto;
-import lk.ijse.carepoint.dto.tm.appointmentTm;
 import lk.ijse.carepoint.dto.tm.scheduleTm;
-import lk.ijse.carepoint.model.ServiceAppointModel;
-import lk.ijse.carepoint.model.SheduleModel;
+import lk.ijse.carepoint.model.SheduleDAO;
+import lk.ijse.carepoint.model.SheduleDAOImpl;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -109,11 +107,8 @@ public class sheduleFormController {
     @FXML
     private TableView<scheduleTm> tblOrderCart;
 
-    private SheduleModel sheduleModel = new SheduleModel();
-
+    private SheduleDAO sheduleDAO=new SheduleDAOImpl();
     private ObservableList<scheduleTm> obListShedule = FXCollections.observableArrayList();
-
-
     public void initialize() {
         setCellValueFactory();
     }
@@ -129,7 +124,7 @@ public class sheduleFormController {
     }
     public void generateNextScheduleId() {
             try {
-                String sheduleID = SheduleModel.generateNextScheduleId();
+                String sheduleID = sheduleDAO.generateNextScheduleId();
                 lblScheduleIDIcon.setText(sheduleID);
                 System.out.println(sheduleID);
             } catch (SQLException e) {
@@ -168,7 +163,7 @@ public class sheduleFormController {
             var dto = new SheduleDto(shedule_Id, date, avalibility, description);
 
             try {
-                boolean isSaved = SheduleModel.saveShedule(dto);
+                boolean isSaved = sheduleDAO.saveShedule(dto);
 
                 //boolean ispassed = serviceAppointFrom.passSheduleID(shedule_Id); //passSheduleID
 
@@ -354,13 +349,11 @@ public class sheduleFormController {
     public void scheduleDateOnAction(ActionEvent event) {
             Date date = Date.valueOf(scheduleDate.getValue());
 
-            var model = new SheduleModel();
-
             ObservableList<scheduleTm> obList = FXCollections.observableArrayList();
 
             try {
                 System.out.println(date);
-                List<SheduleDto> dtoList = model.getAllShedule(date);
+                List<SheduleDto> dtoList = sheduleDAO.getAllShedule(date);
 
                 for (SheduleDto dto : dtoList) {
                     obList.add(
